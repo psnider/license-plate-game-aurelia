@@ -1,0 +1,31 @@
+
+<template>
+    <require from="./FeedbackPanel.css"></require>
+    <require from="./css/toggle-radios.css"></require>
+
+    <div >
+        <div if.bind="feedback_panel_is_open" >
+            <div id="feedback-panel" class="feedback-panel">
+                <h3>Please provide your suggestions, or describe any problems you found...</h3>
+                <div class="toggle-radio" data-style="rounded">
+                    <input type="radio" id="good-rating" name="rating" value="good" checked.bind="rating" />
+                    <label for="good-rating">😊</label>
+                    <input type="radio" id="poor-rating" name="rating" value="poor" checked.bind="rating" />
+                    <label for="poor-rating">🙁</label>
+                </div>
+                <div>
+                    <!-- TODO: add pattern back in: <textarea pattern="\w*" -->
+                    <textarea title="Plese provide your suggestions, or describe any problems you found." id="feedback-text" value.bind="comments" rows="3" ></textarea>
+                </div>
+                <div>
+                    <button type="button" click.delegate="sendFeedback()" >Send Feedback</button>
+                    <button type="button" click.delegate="closePanel()" >...or not!</button>
+                </div>
+            </div>
+        </div>
+
+        <div if.bind="!feedback_panel_is_open" >
+            <button id="feedback-button" class="feedback-button" click.delegate="openPanel()" >Feedback: 😊  🙁</button>
+        </div>
+    </div>
+</template>

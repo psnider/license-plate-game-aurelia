@@ -1,0 +1,9 @@
+<template>
+    <require from="./AnswersTable.css"></require>
+    <require from="./AnswerDifficulty.css"></require>
+
+    <div>
+        <span if.bind="grade_level != null" class="score_tile grade_level_tag" >${grade_level_text}</span>
+        <span if.bind="word_set_size != null" class="score_tile word_set_size_span_tag">${word_set_size_text}</span>
+    </div>
+</template>

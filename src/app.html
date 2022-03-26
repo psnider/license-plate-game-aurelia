@@ -1,0 +1,21 @@
+<template>
+    <require from="./app.css"></require>
+    <require from="./Banner"></require>
+    <require from="./AboutPanel"></require>
+    <require from="./FeedbackPanel"></require>
+    <require from="./LicensePlateSolutionEditorFreeEntry"></require>
+    <require from="./AnswersTable"></require>
+
+    <div class="app">
+        <div class="main-container-width">
+            <banner in_process_count.bind="in_process_count" ></banner>
+        </div>
+        <div class="main-container-width">
+            <about-panel if.bind="about_panel_is_open" about_panel_is_open.bind="about_panel_is_open"></about-panel>
+            <feedback-panel if.bind="feedback_panel_is_open" feedback_panel_is_open.bind="feedback_panel_is_open" current_game.bind="current_game" ></feedback-panel>
+        </div>
+        <div class="main-container-width">
+            <license-plate-solution-editor-free-entry settings.bind="settings" current_game.bind="current_game" puzzle_answers.bind="puzzle_answers" elapsed_seconds.bind="elapsed_seconds" hint.bind="hint" ></license-plate-solution-editor-free-entry>
+        </div>
+    </div>
+</template>

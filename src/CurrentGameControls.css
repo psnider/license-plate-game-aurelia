@@ -1,0 +1,35 @@
+.current-game-controls-button {
+    border-radius: 4px;
+    font-size: 1.0em;
+}
+.current-game-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 95%;
+    height: 15%;
+    margin: 0 auto;
+    justify-content: center;
+    flex-flow: row nowrap;
+    padding: 10px;
+    column-gap: 10px;
+    font-size: 1.5em;
+    /* border: 1px solid grey; */
+}
+.current-game-controls-time {
+    flex: 0 0 25%;
+    padding: 5px;
+    /* border: 1px solid grey; */
+}
+.current-game-controls-buttons {
+    flex: 0 0 34%;
+    padding: 5px;
+}
+.current-game-controls-hint {
+    flex: 0 0 41%;
+    padding: 5px;
+}
+
+.reset-icon-color {
+    color: red;
+}

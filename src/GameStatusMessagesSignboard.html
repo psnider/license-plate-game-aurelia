@@ -1,0 +1,10 @@
+<template>
+    <require from="./css/general.css"></require>
+    <require from="./GameStatusMessagesSignboard.css"></require>
+
+    <div class="flexbox-centering flexbox-centering-text"  class="fade-out-in" style="height:50px;" >
+        <div repeat.for="message_text_line of message_text_lines" >
+            <span class.bind="current_css_classes" style.bind="colorstyle" >${message_text_line}</span>
+        </div> 
+    </div>
+</template>

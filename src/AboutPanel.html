@@ -1,0 +1,26 @@
+<template>
+    <div id="about-panel" >
+        <div if.bind="about_panel_is_open">
+            <h3>This game is an experiment...</h3>
+            <ul>
+                <li>Categorizing Engish words by how commonly they are used.</li>
+                <ul>
+                    <li><p>Using several open-data sources, such as: WordNet,
+                        and various word lists and books in the public domain.
+                    </p></li>
+                </ul>
+                <li>Working with different technologies for web-apps:</li>
+                <ul>
+                    <li><a href="/aurelia"><img src="../static/aurelia-logo.svg" width="16" height="16" /><img src="../static/Typescript_logo_2020.svg" width="16" height="16" /> Aurelia with TypeScript</a> (you are using this one now)</li>
+                    <li><a href="/reactjs"><img src="../static/React-icon.svg" width="16" height="16" /><img src="../static/Typescript_logo_2020.svg" width="16" height="16" /> React.js with TypeScript</a></li>
+                    <li><a href="/vuejs"><img src="../static/Vue.js_Logo_2.svg" width="16" height="16" /><img src="../static/Typescript_logo_2020.svg" width="16" height="16" /> Vue.js with TypeScript</a></li>
+                    <li><a href="/no-framework"><img src="../static/HTML5_logo_and_wordmark.svg" width="16" height="16" /><img src="../static/CSS3_logo_and_wordmark.svg" width="16" height="16" /><img src="../static/JavaScript_logo_2.svg" width="16" height="16" /> Plain HTML+CSS+Javascript</a></li>
+                </ul>
+                <li>Building some word games</li>
+            </ul>
+            <button type="button" click.delegate="closePanel()" >OK, I'm done with about...</button>
+        </div>
+
+    </div>
+</template>
+

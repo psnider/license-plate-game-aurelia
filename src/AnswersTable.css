@@ -1,0 +1,62 @@
+/* .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+} */
+/* .column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+    color: black;
+} */
+
+/* .selected-words-title {
+    background-color: lightgrey;
+    height: 1.5em;
+}
+
+.attempt-number-column {
+    height: 2em;
+    flex: 0 0 5%;
+}
+.attempt-number-column-color {
+background-color: whitesmoke;
+}
+.selected-word-column {
+    height: 2em;
+    flex: 0 0 15%;
+}
+.selected-word-column-color {
+    background-color: rgb(253, 253, 161);
+}
+
+.scores-column {
+    height: 2em;
+    flex: 0 0 15%;
+}
+.scores-column-color {
+    background-color: rgb(202, 231, 255);
+}
+
+.white-column {
+    background-color: whitesmoke;
+    height: 2em;
+}
+
+
+.difficulty-column {
+    background-color: lightblue;
+    height: 2em;
+    flex: 0 0 30%;
+}
+
+.notes-column {
+    background-color: lightgreen;
+    height: 2em;
+} */
+
+.scroll-vertically {
+    overflow-y: scroll;
+}

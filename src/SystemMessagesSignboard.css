@@ -1,0 +1,10 @@
+
+.game_description_message {
+    color: black;
+}
+
+.remote_request_message {
+    font-family: Verdana;
+    font-weight: strong;
+    font-size: 1.2em;
+}

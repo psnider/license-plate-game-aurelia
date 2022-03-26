@@ -1,0 +1,10 @@
+
+.flexbox-centering {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flexbox-centering-text {
+    display: inline-block; 
+}
+

@@ -1,0 +1,17 @@
+body {
+    margin: 0px;
+}
+.app {
+    /* Debbie's choice */
+    /* background-color: rgb(134, 140, 160); */
+
+    background-image: linear-gradient(rgb(183, 224, 240), rgb(85, 145, 168));
+    padding: 10px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.main-container-width {
+    width: 1000px;
+    margin: 5px;
+}

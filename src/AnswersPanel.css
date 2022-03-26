@@ -1,0 +1,22 @@
+.answers-panel {
+    height: 100%;
+    width: 100%;
+}
+
+.answers-panel-answers {
+    height: 100%;
+    width: 100%;
+    margin: 5px;
+    padding: 5px;
+}
+
+
+
+.text-over-license-plate {
+    background-color: rgba(236, 244, 250, 0.4);
+	text-shadow: -1px 1px 1px #ffffff,
+				  1px 1px 1px #ffffff,
+				  1px -1px 1px #ffffff,
+				  -1px -1px 1px #ffffff;
+}
+

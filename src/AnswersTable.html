@@ -1,0 +1,13 @@
+<template>
+    <require from="./AnswersTable.css"></require>
+    <require from="./AnswersTitleRow"></require>
+    <require from="./AnswerRow"></require>
+
+    <answers-title-row ></answers-title-row>
+    <div id="gap-after-answer-title-row" style="height:5px;" ></div>
+    <div id="table-data-rows" style="height:350px;" class="scroll-vertically" >
+        <div repeat.for="puzzle_answer of puzzle_answers">
+            <answer-row puzzle_answer.bind="puzzle_answer" ></answer-row>
+        </div>    
+    </div>
+</template>

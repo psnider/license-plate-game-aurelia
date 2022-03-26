@@ -1,0 +1,15 @@
+
+.grade_level_tag {
+    width: max-content;
+    font-family: Spinnaker, Arial, sans-serif;
+    color: black;
+    background-color: #76a76c;
+    border: 1px solid #374b33;
+}
+.word_set_size_span_tag {
+    width: max-content;
+    font-family: Spinnaker, Arial, sans-serif;
+    color: black;
+    background-color: #aed66c;
+    border: 1px solid #4c5e2f;
+}

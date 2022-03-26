@@ -1,0 +1,77 @@
+.license-plate-frame {
+    background-image: url(./css/license-plates/metal-sheet.jpg);
+    background-size: cover;
+    border-radius: 10px;
+    width: 1000px;
+    height: 600px;
+    margin: 5px;
+    border: 2px solid black;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+.license-plate-frame-interior {
+    /* background-color: silver; */
+    background-image: url(./css/license-plates/license-plate-oregon.jpg);
+    background-size: cover;
+    border-radius: 8px;
+    width: 90%;
+    height: 70%;
+    border: 2px solid darkblue;
+    padding: 20px;
+    margin: 0 auto;
+}
+.license-plate-flex-container {
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.answers-container {
+    height: 100%;
+    width: 100%;
+}
+.top-of-license-frame-size {
+    width: 95%;
+    height: 15%;
+    margin: 0 auto;
+}
+.license-plate-top {
+    width: 95%;
+    height: 20%;
+    /* border: 1px dashed red; */
+}
+.license-plate-text {
+    width: 95%;
+    height: 60%;
+    /* border: 1px dashed white; */
+    margin: auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.license-plate-char {
+    font-family: sans-serif;
+    color: black;
+    font-size: 10em;
+    transition: all 1s ease;
+}
+.input-no-border {
+    border: none;
+    background: none;
+    text-align: center;
+}
+.input-invalid {
+    color: red;
+    transition: all 0.2s ease;
+}
+.license-plate-bottom {
+    width: 95%;
+    height: 20%;
+    /* border: 1px dashed red; */
+}
+

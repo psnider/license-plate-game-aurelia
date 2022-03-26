@@ -1,0 +1,14 @@
+<template>
+    <require from="./AnswerRow.css"></require>
+    <require from="./AnswerScores.css"></require>
+    
+    <div if.bind="is_valid_word" >
+        <span if.bind="boggle_score" class="score_tile boggle_score_tile">${boggle_score}</span>
+        <span if.bind="scrabble_score" class="score_tile scrabble_score_tile">${scrabble_score}</span>
+    </div>
+
+    <div if.bind="!is_valid_word" >
+        <span class="score_tile not_a_word_tile" >❌</span>
+    </div>
+</template>
+

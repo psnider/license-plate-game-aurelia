@@ -1,0 +1,28 @@
+<template>
+    <require from="./AnswersTable.css"></require>
+    <require from="./AnswerRow.css"></require>
+    <require from="./AnswerScores"></require>
+    <require from="./AnswerDifficulty"></require>
+    
+    <div class="answer-row-grid" key="puzzle_answer.attempt_number" >
+        <div class="answer-title-element">
+            ${puzzle_answer.attempt_number}
+        </div>
+        <div class="answer-text-element">
+            ${puzzle_answer.answer_text}
+        </div>
+        <div class='answer-container-element'>
+           <answer-scores boggle_score.bind="puzzle_answer.boggle_score" scrabble_score.bind="puzzle_answer.scrabble_score" ></answer-scores>
+        </div>
+        <div class='answer-container-element'>
+           <answer-difficulty if.bind="is_valid_word" grade_level.bind="puzzle_answer.grade_level" word_set_size.bind="puzzle_answer.word_set_size" ></answer-difficulty>
+        </div>
+        <div class='answer-text-element'>
+            <div if.bind="puzzle_answer.notes" >
+                <div repeat.for="note of notes" >
+                    <span class="score_tile note_span_tag">${note}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

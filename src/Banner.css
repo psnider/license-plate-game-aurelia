@@ -1,0 +1,54 @@
+/* top level container is grid: 10% : 80% : 10% */
+.page-header-container {
+    display: grid; 
+    grid-template-columns: 10fr 80fr 10fr;
+    grid-gap: 0px; 
+}
+.hamburger-menu-container {
+    flex: 0 0 10%;
+    position: relative;
+    display: inline-block;  
+}
+.banner-container {
+    flex: 0 0 60%;
+    margin: auto;
+    text-align: center;
+}
+/* empty-right-header-container requires no CSS */
+
+
+
+/* hamburger menu */
+.hamburger-menu {
+    margin: 5px;
+    width: 20px;
+    height: 20px;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    /* background-color: #f1f1f1; */
+    min-width: 160px;
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    z-index: 1;
+}
+.dropdown-content button {
+    color: black;
+    padding: 6px 6px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+.hamburger-menu-container:hover .dropdown-content {
+    display: block;
+}
+
+
+/* page title */
+.banner-header {
+    font-size: 2em;
+}
+
+/* See SystemMessagesSignboard.css */

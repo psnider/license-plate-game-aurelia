@@ -1,0 +1,37 @@
+
+.hint-message {
+    padding: 5px;
+    font-family: 'Trebuchet MS';
+    font-style: italic;
+    background-color: #ECF4FA;
+    white-space: pre;
+    opacity: 1;
+}
+
+.checked-answer-message {
+    padding: 5px;
+    font-weight: bold;
+    background-color: #ECF4FA;
+    font-family: 'Trebuchet MS';
+}
+
+
+/*  */
+
+.fade-out-in {
+    animation-duration: 1s;
+    animation-name: fade_in_out_keyframes;
+}
+
+
+@keyframes fade_in_out_keyframes {
+    from {
+      opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
