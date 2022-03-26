@@ -59,3 +59,49 @@ These messages time-out as appropriate.
 - There is no way for the user to contest a word.
 
 
+# Design
+
+
+```mermaid
+graph TB
+    subgraph web-app
+    direction TB
+    editor(Word<br>Editor) --> http
+    editor --> Answers
+    Answers --> answers_view(Answers<br>Viewer)
+    puzzle[Current<br>Puzzle] --> editor
+    current(Current Game<br>Controls) --> http
+    new(Start New Game<br>Controls) --> http
+    http --> sys_msgs[System Messages]
+    editor --> game_msgs[Game Messages]
+    end
+
+    http --> server((server))
+
+    classDef data fill:#898,stroke:#333,stroke-width:4px;
+    classDef server fill:#fff,stroke:#333,stroke-width:4px;
+    classDef library fill:#ffb,stroke:#333,stroke-width:4px;
+    class data,puzzle,Answers,sys_msgs,game_msgs data
+    class external,server server
+    class library,http library
+```
+
+Legend for the styles used in the above diagram:
+```mermaid
+graph TB
+    subgraph Legend
+    direction LR
+    ui(UI Element)
+    data[data store]
+    library(library)
+    external((external))
+    end
+
+    classDef data fill:#898,stroke:#333,stroke-width:4px;
+    classDef server fill:#fff,stroke:#333,stroke-width:4px;
+    classDef library fill:#ffb,stroke:#333,stroke-width:4px;
+    class data,puzzle,Answers,sys_msgs,game_msgs data
+    class external,server server
+    class library,http library
+```
+
