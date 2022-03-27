@@ -133,8 +133,7 @@ Note that the TypeScript is in the sibling file of the same basename.
   - [Current Puzzle](./src/PuzzleSummary.html)
   - [Answers](./src/AnswersTable.html)
   - [Game Messages](./src/GameStatusMessagesSignboard.html)
-  - [System Messages](./src/SystemStatusMessagesSignboard.html)
-
+  - [System Messages](./src/SystemMessagesSignboard.html)
 
 
 # Testing
