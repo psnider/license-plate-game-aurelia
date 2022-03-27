@@ -123,22 +123,17 @@ graph TB
     class library,http library
 ```
 
-## Components for the above Design Diagram
+## UI Components for the above Design Diagram
 - UI Elements  
-Note that the TypeScript is in the sibling file of the same basename.
+Note that the TypeScript is in the sibling file of the same basename. 
   - [Word Editor](./src/LicensePlateSolutionEditorFreeEntry.html)
   - [Current Game Controls](./src/CurrentGameControls.html)
   - [Start New Game Controls](./src/StartNewGameControls.html)
-  - [Answers Viewer](./src/AnswersTable.html)
-- Data Stores  
-  - [Current Puzzle](./src/PuzzleSummary.ts)
+  - [Answers Viewer](./src/AnswersPanel.html)
+  - [Current Puzzle](./src/PuzzleSummary.html)
   - [Answers](./src/AnswersTable.html)
   - [Game Messages](./src/GameStatusMessagesSignboard.html)
   - [System Messages](./src/SystemStatusMessagesSignboard.html)
-- Libraries  
-  - [http](https://github.com/psnider/license-plate-game-api)
-
-
 
 
 
@@ -149,6 +144,7 @@ I didn't get around to writing tests.
 
 If this web-app winds up being something that I use for a production deployment, then I'll add appropriate tests then.
 In the meantime, I'll revisit both the ReactJS and Vue.js web-apps, and I may even consider other frameworks, such as Svelte and Hyper-HTML.
+
 ## Two main test categories
 I like to divide tests into two groups:
 - independent of the network  
@@ -161,7 +157,7 @@ For example, mocha support skip(), which causes tests to show up in test results
 
 # So, what about Aurelia?
 I really like the core idea of Aurelia: **Use standard HTML + JavaScript!**  
-- HTML with binding to JavaScript class variables.
+- HTML with bindings to JavaScript class variables.
 - Plain JavaScript with decorators.  
 
 No special languages required!  Just standard HTML and standard JavaScript. No *.vue files, no *.jsx or *.tsx files.  
@@ -174,8 +170,7 @@ This also includes general information on the web, such as examples and Stack Ov
 Errors in required filenames are not flagged.  This can cause a fair bit of pain.
 - There appear to be only a few maintainers.  
 The project moves along very slowly.  
-This is the 3rd time I tried Aurelia!  
-Both of the earlier times, my project wound up dying due to tooling and documentation problems.
+This is the 3rd time I tried Aurelia!  Both of the previous times, my project wound up dying due to tooling and documentation problems.
 - It's easy to confuse Aurelia v1 and v2 documentation.  
-But this is also true of React JS and Vue.js, which both have a number of complicating revisions.
+But this is also true of React JS and Vue.js, which both have a number of complicating revisions and usage models.
 
