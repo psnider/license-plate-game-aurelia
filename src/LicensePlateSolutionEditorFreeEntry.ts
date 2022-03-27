@@ -2,7 +2,7 @@ import {bindable, autoinject, observable} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {AuMsgResetPuzzleText, AuMsgAnswersPanelState, AuMsgCheckAnswerTriggeredByEnter} from './messages';
 import type {LicensePlatePuzzle} from "./lib/license-plate-puzzle"
-import type {LicencePlateGameAPI} from "license-plate-game-api"
+import type {LicensePlateGameAPI} from "license-plate-game-api"
 import {ExpiringMessages} from "./expiring-messages"
 import {Settings, PuzzleAnswer} from "./lib/index.d"
 
@@ -14,7 +14,7 @@ const MAX_FONT_SIZE_EM = 10
 const MIN_FONT_SIZE_EM = 6
 const DIFF_IN_FONT_SIZE_EM = MAX_FONT_SIZE_EM - MIN_FONT_SIZE_EM
 const MAX_WORD_LENGTH_AT_MAX_FONT_SIZE = 5
-const LENGTH_BTWN_MIN_AND_MAX_FONT_SIZE = MAX_WORD_LENGTH - MAX_WORD_LENGTH_AT_MAX_FONT_SIZE
+const LENGTH_BETWEEN_MIN_AND_MAX_FONT_SIZE = MAX_WORD_LENGTH - MAX_WORD_LENGTH_AT_MAX_FONT_SIZE
 
 
 interface ComputedStyle {
@@ -56,7 +56,7 @@ export class LicensePlateSolutionEditorFreeEntry {
     @bindable @observable current_game: LicensePlatePuzzle | undefined
     @bindable @observable elapsed_seconds: number
     @bindable @observable puzzle_answers: PuzzleAnswer[]
-    @bindable @observable hint: LicencePlateGameAPI.HintResponse | undefined
+    @bindable @observable hint: LicensePlateGameAPI.HintResponse | undefined
     computed_style: ComputedStyle
     puzzle_input_element: HTMLInputElement
     puzzle_chars_in_order_regexp: RegExp
@@ -253,7 +253,7 @@ export class LicensePlateSolutionEditorFreeEntry {
                 size = MIN_FONT_SIZE_EM
             } else {
                 const dist_from_min = length - MAX_WORD_LENGTH_AT_MAX_FONT_SIZE
-                const size_decrease = (dist_from_min / LENGTH_BTWN_MIN_AND_MAX_FONT_SIZE) * DIFF_IN_FONT_SIZE_EM
+                const size_decrease = (dist_from_min / LENGTH_BETWEEN_MIN_AND_MAX_FONT_SIZE) * DIFF_IN_FONT_SIZE_EM
                 size = MAX_FONT_SIZE_EM - size_decrease
             }
             return size    

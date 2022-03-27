@@ -1,9 +1,9 @@
-import type {LicencePlateGameAPI} from "license-plate-game-api"
+import type {LicensePlateGameAPI} from "license-plate-game-api"
 import type {PuzzleAnswer} from "."
 
 
 
-export class LicensePlatePuzzle implements LicencePlateGameAPI.NewGameResponse {
+export class LicensePlatePuzzle implements LicensePlateGameAPI.NewGameResponse {
     //from NewGameResponse 
     public puzzle_seed: string
     // There is no game ID if there are no solutions
@@ -22,7 +22,7 @@ export class LicensePlatePuzzle implements LicencePlateGameAPI.NewGameResponse {
     private timer_is_active: boolean
 
 
-    constructor(new_game: LicencePlateGameAPI.NewGameResponse, notifyElapsedTimeUpdated: (puzzle: LicensePlatePuzzle) => void) {
+    constructor(new_game: LicensePlateGameAPI.NewGameResponse, notifyElapsedTimeUpdated: (puzzle: LicensePlatePuzzle) => void) {
         const updateElapsedTime = () => {
             if (this.timer_is_active) {
                 this.elapsed_seconds++

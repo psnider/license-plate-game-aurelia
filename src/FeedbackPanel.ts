@@ -3,7 +3,8 @@ import {EventAggregator} from 'aurelia-event-aggregator';
 import {AuMsgFeedbackPanelState, AuMsgRemoteCallState} from './messages';
 import type {ExpiringMessage} from "./lib"
 import type {LicensePlatePuzzle} from "./lib/license-plate-puzzle"
-import type {LicencePlateGameAPI} from "license-plate-game-api"
+import type {LicensePlateGameAPI} from "license-plate-game-api"
+import {LicensePlateGameClient} from "license-plate-game-api"
 
 
 
@@ -11,7 +12,7 @@ import type {LicencePlateGameAPI} from "license-plate-game-api"
 export class FeedbackPanel {
     @bindable feedback_panel_is_open: boolean
     @bindable current_game?: LicensePlatePuzzle
-    rating: LicencePlateGameAPI.FeedBackPost["rating"]
+    rating: LicensePlateGameAPI.FeedBackPost["rating"]
     comments: string
     static remote_request_id: number = 0
 
@@ -34,7 +35,7 @@ export class FeedbackPanel {
 
 
     sendFeedback() {
-        const feedback: LicencePlateGameAPI.FeedBackPost = {
+        const feedback: LicensePlateGameAPI.FeedBackPost = {
             game_id: this.current_game?.game_id,
             puzzle_seed: this.current_game?.puzzle_seed,
             rating: this.rating,
@@ -43,7 +44,7 @@ export class FeedbackPanel {
         const remote_request_id = `feedback-${FeedbackPanel.remote_request_id++}`
         const message: ExpiringMessage = {text: "sending feedback", expiration_secs: 30, message_type: "feedback-remote-request", remote_request_status: "sending", remote_request_id}
         this.ea.publish(new AuMsgRemoteCallState(message));
-        postFeedback(feedback).then((response) => {
+        LicensePlateGameClient.postFeedback(feedback).then((response) => {
             this.comments = ""
             this.closePanel()
             const message: ExpiringMessage = {text: "feedback received!", expiration_secs: 5, message_type: "feedback-remote-request", remote_request_status: "ok", remote_request_id}
@@ -57,15 +58,3 @@ export class FeedbackPanel {
     }
 
 }
-
-
-function postFeedback(feedback: LicencePlateGameAPI.FeedBackPost) {
-    return fetch('/license_plate_game/feedback', {
-        headers: {
-            "Content-Type": "application/json"
-        },
-        method: 'post',
-        body: JSON.stringify(feedback)
-    })
-}
-

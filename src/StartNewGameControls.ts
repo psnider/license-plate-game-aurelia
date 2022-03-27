@@ -1,16 +1,16 @@
 import {autoinject} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {AuMsgNewGameRequest, AuMsgAnswersPanelState} from './messages';
-import type {LicencePlateGameAPI} from "license-plate-game-api"
+import type {LicensePlateGameAPI} from "license-plate-game-api"
 
 
 
-type NewGameSpecicationStep = "not active" | "choose type" | "start random game" | "get user selection" | "start user selected game" | "awaiting response"
+type NewGameSpecificationStep = "not active" | "choose type" | "start random game" | "get user selection" | "start user selected game" | "awaiting response"
 type NewGameType = "random" | "user-specified"
 
 @autoinject
 export class StartNewGameControls {
-    step: NewGameSpecicationStep
+    step: NewGameSpecificationStep
     user_selected_puzzle_text: string
     user_puzzle_input_element: HTMLInputElement
 
@@ -22,8 +22,8 @@ export class StartNewGameControls {
     }
 
 
-//    type NewGameSpecicationStep = "not active" | "choose type" | "start random game" | "get user selection" | "start user selected game" | "awaiting response"
-    advanceStep(next_step: NewGameSpecicationStep) {
+//    type NewGameSpecificationStep = "not active" | "choose type" | "start random game" | "get user selection" | "start user selected game" | "awaiting response"
+    advanceStep(next_step: NewGameSpecificationStep) {
         this.step = next_step
         switch (next_step) {
             case "start random game":
@@ -48,7 +48,7 @@ export class StartNewGameControls {
     
 
     startNewGameFromUserSelection() {
-        const options: LicencePlateGameAPI.NewGameRequest = {
+        const options: LicensePlateGameAPI.NewGameRequest = {
             user_selected_puzzle: this.user_selected_puzzle_text,
             completion_callback: () => {
                 this.step = "not active"

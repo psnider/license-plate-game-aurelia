@@ -6,8 +6,8 @@ import {Settings, ExpiringMessage, PuzzleAnswer} from "./lib/index.d"
 import {MAX_EXPIRATION_SECONDS} from "./lib/lib"
 import {AuMsgAboutPanelState, AuMsgFeedbackPanelState, AuMsgRemoteCallState, AuMsgNewGameRequest, AuMsgCheckAnswer, AuMsgHintRequest, AuMsgResetPuzzleText} from './messages';
 import {LicensePlatePuzzle} from "./lib/license-plate-puzzle"
-import {LicencePlateGameClient} from "license-plate-game-api"
-import type {LicencePlateGameAPI} from "license-plate-game-api"
+import {LicensePlateGameClient} from "license-plate-game-api"
+import type {LicensePlateGameAPI} from "license-plate-game-api"
 
 
 function minutesToMilliseconds(minutes: number) {
@@ -32,7 +32,7 @@ export class App {
     elapsed_seconds: number
     remote_request_id: number
     puzzle_answers: PuzzleAnswer[]
-    hint: LicencePlateGameAPI.HintResponse | undefined
+    hint: LicensePlateGameAPI.HintResponse | undefined
 
     constructor(private ea: EventAggregator) {
         this.settings = {check_answer_on_enter_key: true}
@@ -70,7 +70,7 @@ export class App {
 
     keepAlive() {
         setTimeout(() => {
-            LicencePlateGameClient.requestUpTime()
+            LicensePlateGameClient.requestUpTime()
             this.keepAlive()
         }, minutesToMilliseconds(15))
     }
@@ -95,7 +95,7 @@ export class App {
 
     // @request
     //   The game_id and elapsed_seconds fields are populated by this function.
-    userRequestedStartNewGame(request: LicencePlateGameAPI.NewGameRequest) {
+    userRequestedStartNewGame(request: LicensePlateGameAPI.NewGameRequest) {
         const getNextGradeLevel = (current_game: LicensePlatePuzzle) => {
             const average_grade_of_answers =  this.getAverageGradeLevelOfAnswers() 
             if (average_grade_of_answers != null) {
@@ -116,7 +116,7 @@ export class App {
         this.puzzle_answers = []
         this.hint = undefined
         const requested_text = request.user_selected_puzzle
-        const promise = LicencePlateGameClient.requestNewGame(request)
+        const promise = LicensePlateGameClient.requestNewGame(request)
         const remote_request_id = `new-game-${this.remote_request_id++}`
         this.initiateRemoteRequest({text: "requesting new game", message_type: "new-game-remote-request", remote_request_status: "sending", remote_request_id, expiration_secs: EXPIRATION_SECONDS.REQUEST})
         this.feedback_panel_is_open = false
@@ -148,13 +148,13 @@ export class App {
 
     }
 
-    userRequestedCheckSolution(completion_callback?: LicencePlateGameAPI.ClientCompletionCallback) {
+    userRequestedCheckSolution(completion_callback?: LicensePlateGameAPI.ClientCompletionCallback) {
         if (this.current_game) {
             if (this.currentWordIsANewAnswer()) {
                 this.current_game.answer_text = this.current_game.answer_text
                 const {game_id, puzzle_seed, elapsed_seconds, answer_text} = this.current_game
-                const request: LicencePlateGameAPI.CheckAnswerRequest = {game_id, puzzle_seed, elapsed_seconds, answer_text}
-                const promise = LicencePlateGameClient.requestCheckAnswer(request)
+                const request: LicensePlateGameAPI.CheckAnswerRequest = {game_id, puzzle_seed, elapsed_seconds, answer_text}
+                const promise = LicensePlateGameClient.requestCheckAnswer(request)
                 const remote_request_id = `check-solution-${this.remote_request_id++}`
                 this.initiateRemoteRequest({remote_request_id, text: "requesting answer check", message_type: "check-answer-remote-request", remote_request_status: "sending", expiration_secs: EXPIRATION_SECONDS.REQUEST})
                 promise.then((graded_answer) => {
@@ -180,11 +180,11 @@ export class App {
     }
     
     
-    userRequestedHint(completion_callback?: LicencePlateGameAPI.ClientCompletionCallback) {
+    userRequestedHint(completion_callback?: LicensePlateGameAPI.ClientCompletionCallback) {
         if (this.current_game) {
             const {game_id, puzzle_seed, elapsed_seconds} = this.current_game
-            const request: LicencePlateGameAPI.HintRequest = {game_id, puzzle_seed, elapsed_seconds}
-            const promise = LicencePlateGameClient.requestHint(request)
+            const request: LicensePlateGameAPI.HintRequest = {game_id, puzzle_seed, elapsed_seconds}
+            const promise = LicensePlateGameClient.requestHint(request)
             const remote_request_id = `get-hint-${this.remote_request_id++}`
             this.initiateRemoteRequest({remote_request_id, text: "requesting hint", message_type: "hint-remote-request", remote_request_status: "sending", expiration_secs: EXPIRATION_SECONDS.REQUEST})
             promise.then((hint) => {

@@ -39,7 +39,7 @@ export class SystemMessagesSignboard {
     system_messages: ExpiringMessages
     // Set to empty string when there are no styles
     current_css_classes: string
-    colorstyle: Object
+    color_style: Object
     message_text_lines: string[]
     game_description_message: ExpiringMessage = {text: game_description_text, message_type: "info", expiration_secs: MAX_EXPIRATION_SECONDS}
     
@@ -72,7 +72,7 @@ export class SystemMessagesSignboard {
 
     updated() {
         this.message_text_lines = this._getDisplayTextLines()
-        this.colorstyle = this._getColorStyle()
+        this.color_style = this._getColorStyle()
         this.current_css_classes = this._getCSSClasses()
     }
 

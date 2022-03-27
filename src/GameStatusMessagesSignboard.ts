@@ -24,7 +24,7 @@ export class GameStatusMessagesSignboard {
     game_status_messages: ExpiringMessages
     // Set to empty string when there are no styles
     current_css_classes: string
-    colorstyle: Object
+    color_style: Object
     message_text_lines: string[]
 
 
@@ -61,7 +61,7 @@ export class GameStatusMessagesSignboard {
 
     updated() {
         this.message_text_lines = this._getDisplayTextLines()
-        this.colorstyle = this._getColorStyle()
+        this.color_style = this._getColorStyle()
         this.current_css_classes = this._getCSSClasses()
     }
 

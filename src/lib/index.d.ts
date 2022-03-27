@@ -1,4 +1,4 @@
-import type {LicencePlateGameAPI} from "license-plate-game-api"
+import type {LicensePlateGameAPI} from "license-plate-game-api"
 
 
 export interface Settings {
@@ -6,7 +6,7 @@ export interface Settings {
 }
 
 
-export interface PuzzleAnswer extends LicencePlateGameAPI.CheckAnswerResponse {
+export interface PuzzleAnswer extends LicensePlateGameAPI.CheckAnswerResponse {
     attempt_number: number
     answer_text: string
 }

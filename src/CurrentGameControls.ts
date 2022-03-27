@@ -1,7 +1,7 @@
 import {bindable, autoinject, observable} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {AuMsgCheckAnswer, AuMsgHintRequest, AuMsgResetPuzzleText, AuMsgGameStatusMessage, AuMsgAnswersPanelState, AuMsgCheckAnswerTriggeredByEnter} from './messages';
-import type {LicencePlateGameAPI} from "license-plate-game-api"
+import type {LicensePlateGameAPI} from "license-plate-game-api"
 import { ExpiringMessage } from './lib';
 import { MAX_EXPIRATION_SECONDS } from './lib/lib';
 
@@ -41,7 +41,7 @@ export class CurrentGameControls {
     }
 
 
-    getHintDifficulty(hint: LicencePlateGameAPI.HintResponse) {
+    getHintDifficulty(hint: LicensePlateGameAPI.HintResponse) {
         if  (hint.word_set_size != null) {
             return `     Difficulty: once in ${hint.word_set_size.toLocaleString()} words`
         } else {
@@ -50,7 +50,7 @@ export class CurrentGameControls {
     }
  
 
-    getMessageForHint(hint: LicencePlateGameAPI.HintResponse) {
+    getMessageForHint(hint: LicensePlateGameAPI.HintResponse) {
         const pattern = `Pattern: ${hint.solution_pattern_text}`
         const difficulty = this.getHintDifficulty(hint)
         const text = pattern + difficulty
@@ -63,7 +63,7 @@ export class CurrentGameControls {
 
 
     userRequestedCheckSolution() {
-        const getMessageForGradedAnswer = (error: string | null | undefined, graded_answer?: LicencePlateGameAPI.CheckAnswerResponse) => {
+        const getMessageForGradedAnswer = (error: string | null | undefined, graded_answer?: LicensePlateGameAPI.CheckAnswerResponse) => {
             if (graded_answer) {
                 const answer_text_uppercase = graded_answer.answer_text.toLocaleUpperCase()
                 if (graded_answer.scrabble_score) {

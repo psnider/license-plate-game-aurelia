@@ -1,5 +1,5 @@
 import type {ExpiringMessage} from "./lib/index.d"
-import type {LicencePlateGameAPI} from "license-plate-game-api"
+import type {LicensePlateGameAPI} from "license-plate-game-api"
 
 
 export class AuMsgAboutPanelState {
@@ -29,12 +29,12 @@ export class AuMsgGameStatusMessage {
 
 
 export class AuMsgNewGameRequest {
-    constructor(public request: LicencePlateGameAPI.NewGameRequest) { }
+    constructor(public request: LicensePlateGameAPI.NewGameRequest) { }
 }
 
 
 export class AuMsgCheckAnswer {
-    constructor(public callback: LicencePlateGameAPI.ClientCompletionCallback) { }
+    constructor(public callback: LicensePlateGameAPI.ClientCompletionCallback) { }
 }
 
 
@@ -44,7 +44,7 @@ export class AuMsgCheckAnswerTriggeredByEnter {
 
 
 export class AuMsgHintRequest {
-    constructor(public callback: LicencePlateGameAPI.ClientCompletionCallback) { }
+    constructor(public callback: LicensePlateGameAPI.ClientCompletionCallback) { }
 }
 
 
