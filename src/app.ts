@@ -1,10 +1,8 @@
 import {autoinject} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
-// import {Router, RouterConfiguration} from 'aurelia-router';
-// import {PLATFORM} from 'aurelia-pal';
 import {Settings, ExpiringMessage, PuzzleAnswer} from "./lib/index.d"
 import {MAX_EXPIRATION_SECONDS} from "./lib/lib"
-import {AuMsgAboutPanelState, AuMsgFeedbackPanelState, AuMsgRemoteCallState, AuMsgNewGameRequest, AuMsgCheckAnswer, AuMsgHintRequest, AuMsgResetPuzzleText} from './messages';
+import {AuMsgAboutPanelState, AuMsgFeedbackPanelState, AuMsgRemoteCallState, AuMsgNewGameRequest, AuMsgCheckAnswer, AuMsgHintRequest} from './messages';
 import {LicensePlatePuzzle} from "./lib/license-plate-puzzle"
 import {LicensePlateGameClient} from "license-plate-game-api"
 import type {LicensePlateGameAPI} from "license-plate-game-api"

@@ -141,15 +141,15 @@ Note that the TypeScript is in the sibling file of the same basename.
 Since this was a project for me to learn Aurelia,
 I didn't get around to writing tests.
 
-If this web-app winds up being something that I use for a production deployment, then I'll add appropriate tests then.
-In the meantime, I'll revisit both the ReactJS and Vue.js web-apps, and I may even consider other frameworks, such as Svelte and Hyper-HTML.
+If this web-app winds up being something that I use for a production deployment, then I'll add appropriate tests.
+In the meantime, I'll revisit both the ReactJS and Vue.js web-apps, and I may even consider other frameworks, such as Svelte or Hyper-HTML. (I've used both Angular 1 and 2 in the past, and find them too complicated.)
 
 ## Two main test categories
 I like to divide tests into two groups:
-- independent of the network  
+- those independent of the network  
 These test all normal computation, and use mocks to test local code.
-- requires the internet  
-This may have dependencies on external services, which may fail.
+- those that require the internet  
+These may have dependencies on external services, which may fail.
 
 I like test frameworks that support alternatives to pass/fail.  
 For example, mocha support skip(), which causes tests to show up in test results, but as not having been run.
@@ -171,5 +171,5 @@ Errors in required filenames are not flagged.  This can cause a fair bit of pain
 The project moves along very slowly.  
 This is the 3rd time I tried Aurelia!  Both of the previous times, my project wound up dying due to tooling and documentation problems.
 - It's easy to confuse Aurelia v1 and v2 documentation.  
-But this is also true of React JS and Vue.js, which both have a number of complicating revisions and usage models.
+But this is also true of React JS and Vue.js, and probably even worse.  Both have a number of complicating revisions and usage models.
 

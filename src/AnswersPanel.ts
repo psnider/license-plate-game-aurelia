@@ -1,7 +1,6 @@
 import {autoinject, bindable, observable} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
 import type { PuzzleAnswer } from "./lib"
-import {AuMsgAnswersPanelState} from './messages';
 
 
 @autoinject

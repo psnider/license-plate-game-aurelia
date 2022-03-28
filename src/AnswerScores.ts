@@ -1,4 +1,4 @@
-import {bindable, autoinject, observable} from 'aurelia-framework';
+import {bindable, autoinject} from 'aurelia-framework';
 
 
 @autoinject

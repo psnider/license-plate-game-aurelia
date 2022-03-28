@@ -1,4 +1,3 @@
-import { ids } from "webpack"
 import type {ExpiringMessage} from "./lib/index.d"
 import {MAX_EXPIRATION_SECONDS} from "./lib/lib"
 
