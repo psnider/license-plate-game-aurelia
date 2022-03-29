@@ -8,7 +8,7 @@ import {AuMsgRemoteCallState} from './messages';
 
 
 const status_colors = {
-    sending: "blue",
+    request: "blue",
     ok: "green",
     error: "red"
 }
@@ -34,6 +34,11 @@ const game_description_text = [
     "This game allows words of up to 15 characters long."
 ]
 
+
+// A message display panel for http transactions and for general messages.
+// This consists of the status of requests and responses.
+// One message is shown at a time.
+// They rotate according to the default behavior of ExpiringMessages.
 @autoinject
 export class SystemMessagesSignboard {
     system_messages: ExpiringMessages
@@ -53,7 +58,7 @@ export class SystemMessagesSignboard {
             const message = msg.message
             if (message) {
                 const {message_type} = message
-                if (message.remote_request_status === "sending") {
+                if (message.remote_request_status === "request") {
                     this.system_messages.removeMatchingMessages({message_type})
                 }
                 this.system_messages.addExpiringMessage(message)
@@ -65,11 +70,13 @@ export class SystemMessagesSignboard {
     }
     
 
+    // The Aurelia life-cycle method called as soon as the data from the containing component is bound to this component. 
     bind(bindingContext: Object, overrideContext: Object) {
         this.updated()
     }
     
 
+    // Called whenever the current_message changes.
     updated() {
         this.message_text_lines = this._getDisplayTextLines()
         this.color_style = this._getColorStyle()
@@ -77,6 +84,7 @@ export class SystemMessagesSignboard {
     }
 
 
+    // Get the text for the current_message.
     private _getDisplayTextLines() {
         let text_lines = []
         if (this.system_messages.current_message?.text) {
@@ -90,6 +98,7 @@ export class SystemMessagesSignboard {
     }
 
 
+    // Get the style for the color of the current message.
     private _getColorStyle() {
         const remote_request_status = this.system_messages.current_message?.remote_request_status
         const color = remote_request_status ? status_colors[remote_request_status] : "black"
@@ -97,6 +106,7 @@ export class SystemMessagesSignboard {
     }
 
 
+    // Get the CSS classes for the current message.
     private _getCSSClasses() {
         const type = this.system_messages.current_message?.message_type
         const classes = (type in classes_by_message_type) ? classes_by_message_type[type] : []

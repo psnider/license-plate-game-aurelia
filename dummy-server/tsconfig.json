@@ -1,0 +1,17 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "typeRoots" : ["../node_modules/@types"],
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "outDir": "generated"
+    },
+    "include": [
+        "dummy-server.ts"
+    ]
+}

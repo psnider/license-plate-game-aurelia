@@ -4,7 +4,7 @@ import {AuMsgResetPuzzleText, AuMsgAnswersPanelState, AuMsgCheckAnswerTriggeredB
 import type {LicensePlatePuzzle} from "./lib/license-plate-puzzle"
 import type {LicensePlateGameAPI} from "license-plate-game-api"
 import {ExpiringMessages} from "./expiring-messages"
-import {Settings, PuzzleAnswer} from "./lib/index.d"
+import {Settings, PuzzleAnswer} from "./lib"
 
 
 // This must be tied to NewGameResponse.max_word_length
@@ -50,8 +50,13 @@ const DEFAULT_GAME_STATUS_MESSAGE_STYLE = {
 }
 
 
+
+// The container for the interior of the license plate frame.
+// It displays either:
+// - the input component and the game status messages component
+// - the scored answers
 @autoinject
-export class LicensePlateSolutionEditorFreeEntry {
+export class LicensePlateAnswerEditorFreeEntry {
     @bindable settings: Settings
     @bindable @observable current_game: LicensePlatePuzzle | undefined
     @bindable @observable elapsed_seconds: number
@@ -88,15 +93,18 @@ export class LicensePlateSolutionEditorFreeEntry {
     }
 
 
+    // The Aurelia life-cycle method called as soon as the data from the containing component is bound to this component. 
     bind() {
         this.current_gameChanged()
     }
 
+    // The Aurelia life-cycle method called as soon as this component is attached to the DOM. 
     attached() {
         this.updateSizes()
     }
 
 
+    // Called by Aurelia when current_game changes.
     current_gameChanged() {
         if (this.current_game) {
             this.answer_text = this.current_game.answer_text
@@ -110,6 +118,7 @@ export class LicensePlateSolutionEditorFreeEntry {
     }
 
 
+    // The handler for input type events from the answer text input.
     onAnyInput(event: InputEvent) {
         const is_drop_insert = (event.inputType === "insertFromDrop")
         const {selectionStart, selectionEnd} = this.puzzle_input_element
@@ -140,11 +149,15 @@ export class LicensePlateSolutionEditorFreeEntry {
     }
 
 
+    // Sets the cursor for the answer text input.
     updateCursor(selectionStart: number, selectionEnd: number) {
         this.puzzle_input_element.setSelectionRange(selectionStart, selectionEnd);
     }
 
 
+    // true if deleting preserves the order of the puzzle_seed characters, that is, true if deletion is a valid operation.
+    // This considers both the typical case of deleting a single character,
+    // and the case of selecting multiple sequential characters for deletion.
     deletionPreservesOrderOfPuzzleChars() {
         const {selectionStart, selectionEnd} = this.puzzle_input_element
         const answer_text = this.answer_text
@@ -165,6 +178,7 @@ export class LicensePlateSolutionEditorFreeEntry {
     }
 
 
+    // true if inserting characters via a drop operation preserves the order of the puzzle_seed characters, that is, true if drop is a valid operation.
     dropPreservesOrderOfPuzzleChars(text_after_drop: string) {
         let match = text_after_drop.match(this.puzzle_chars_in_order_regexp)
         const drop_allowed = (match != null)
@@ -172,6 +186,7 @@ export class LicensePlateSolutionEditorFreeEntry {
     }
 
 
+    // The handler for keydown type events from the answer text input.
     onkeydown(event: KeyboardEvent) {
         function isCursorMovement() {
             const is_cursor_movement = ((event.key === "ArrowLeft") || (event.key === "ArrowRight") || (event.key === "Left") || (event.key === "Right"))
@@ -212,6 +227,7 @@ export class LicensePlateSolutionEditorFreeEntry {
     }
 
 
+    // The handler for starting a drag event from the answer text input.
     onDragStart(event: DragEvent) {
         this.answer_text_before_drag = this.answer_text
         const {selectionStart, selectionEnd} = this.puzzle_input_element
@@ -221,18 +237,21 @@ export class LicensePlateSolutionEditorFreeEntry {
     }
 
 
+    // The handler for a drop event from the answer text input.
     onDrop(event: DragEvent) {
         // console.log(`onDrop answer_text_before_drag=${this.answer_text}`)
         return true
     }
 
 
+    // The handler for a change event from the answer text input.
     onChange() {
         // console.log("onChange")
         this.current_game.answer_text = this.answer_text
     }
 
     
+    // Updates the CSS size styles for the answer text input.
     updateSizes() {
         const em_size = this.getLicensePlateCharSizeEm()
         const width_px = this.puzzle_input_element ? calculatePixelWidth(this.answer_text + "W", this.puzzle_input_element) : 500
@@ -243,6 +262,7 @@ export class LicensePlateSolutionEditorFreeEntry {
     }
 
 
+    // Computes the font size for the answer text input.
     getLicensePlateCharSizeEm(): number {
         if (this.answer_text) {
             const length = this.answer_text.length
@@ -263,6 +283,7 @@ export class LicensePlateSolutionEditorFreeEntry {
     }
 
 
+    // Resets the answer text input to contain the puzzle_seed.
     resetPuzzleText() {
         this.answer_text = this.current_game.puzzle_seed
         this.current_game.answer_text = this.current_game.puzzle_seed
@@ -272,8 +293,7 @@ export class LicensePlateSolutionEditorFreeEntry {
 }
 
 
-
-
+// Normalizes text to uppercase and without leading or trailing whitespace.
 function filterInput(text: string) {
     text = text.trim().toUpperCase()
     return text

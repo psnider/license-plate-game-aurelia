@@ -12,7 +12,6 @@
     justify-content: center;
   }
 .license-plate-frame-interior {
-    /* background-color: silver; */
     background-image: url(./css/license-plates/license-plate-oregon.jpg);
     background-size: cover;
     border-radius: 8px;

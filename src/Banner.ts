@@ -3,8 +3,6 @@ import {AuMsgAboutPanelState, AuMsgFeedbackPanelState} from 'messages';
 import {EventAggregator} from 'aurelia-event-aggregator';
 
 
-
-
 @autoinject
 export class Banner {
     @bindable in_process_count: number

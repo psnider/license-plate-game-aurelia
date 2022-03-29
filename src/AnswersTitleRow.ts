@@ -1,8 +1,2 @@
-export class AnswersTitleRow {
-
-    constructor() {}
-    
+export class AnswersTitleRow {    
 }
-
-
-

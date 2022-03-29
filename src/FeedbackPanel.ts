@@ -33,7 +33,8 @@ export class FeedbackPanel {
     }
 
 
-
+    // Post feedback to the server.
+    // Send an ExpiringMessage via the Aurelia EventAggregator so it can be displayed.
     sendFeedback() {
         const feedback: LicensePlateGameAPI.FeedBackPost = {
             game_id: this.current_game?.game_id,
@@ -42,7 +43,7 @@ export class FeedbackPanel {
             comments: this.comments
         }
         const remote_request_id = `feedback-${FeedbackPanel.remote_request_id++}`
-        const message: ExpiringMessage = {text: "sending feedback", expiration_secs: 30, message_type: "feedback-remote-request", remote_request_status: "sending", remote_request_id}
+        const message: ExpiringMessage = {text: "sending feedback", expiration_secs: 30, message_type: "feedback-remote-request", remote_request_status: "request", remote_request_id}
         this.ea.publish(new AuMsgRemoteCallState(message));
         LicensePlateGameClient.postFeedback(feedback).then((response) => {
             this.comments = ""

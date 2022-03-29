@@ -5,14 +5,9 @@ import {MAX_EXPIRATION_SECONDS} from "./lib/lib"
 const DEFAULT_ROTATION_SECS = 2
 
 
-// interface Options {
-//     // Indicates the maximum number messages to keep of the type of the associated message.
-//     max_messages_of_type?: {[type: string]: number}
-// }
-
-
-
 // Manage a set of messages that have expiration times.
+// Every DEFAULT_ROTATION_SECS number of seconds it switches the current message to be the next one in the set of messages.
+//
 // This class does not contain any view related data or dependencies.
 //
 // To use it:
@@ -42,6 +37,7 @@ export class ExpiringMessages {
     }
 
 
+    // Add an ExpiringMessage to be managed.
     addExpiringMessage(new_message: ExpiringMessage): void {
         const removePreviousMessagesFromSameRequest = () => {
             const messages_w_different_request_id = this.expiring_messages.filter((m) => {
@@ -73,15 +69,17 @@ export class ExpiringMessages {
     }
 
 
-    findIndexOfMessage(query: number) {
+    // Get the index of the message with the given id.
+    // If it isn't found, return -1.
+    findIndexOfMessage(query_message_id: number) {
         const index = this.expiring_messages.findIndex((message, i) => {
-            return (message._message_id === query)
+            return (message._message_id === query_message_id)
         })
         return index
     }
 
 
-
+    // Get the index of the current_message.
     findIndexOfCurrentMessage() {
         if (this.current_message) {
             const index = this.findIndexOfMessage(this.current_message._message_id)
@@ -92,6 +90,7 @@ export class ExpiringMessages {
     }
 
 
+    // Update the current_message to be the next one in the set of messages.
     rotateMessageAfterDelay() {
         if (!this.stop_timer) {
             setTimeout(() => { 
@@ -107,14 +106,16 @@ export class ExpiringMessages {
     }
 
 
-    removeMessage(query: number) {
-        const index = this.findIndexOfMessage(query)
+    // Remove the message with the given id.
+    // If the message isn't found, no action is performed.
+    removeMessage(query_message_id: number) {
+        const index = this.findIndexOfMessage(query_message_id)
         if (index != -1) {
             const other_messages = this.expiring_messages.filter((m) => {
-                return m._message_id !== query
+                return m._message_id !== query_message_id
             })
             this.expiring_messages = other_messages
-            if (this.current_message?._message_id == query) {
+            if (this.current_message?._message_id == query_message_id) {
                 const new_index = index % this.expiring_messages.length
                 this.current_message = this.expiring_messages[new_index]
             }
@@ -123,6 +124,10 @@ export class ExpiringMessages {
     }
 
 
+    // Remove and messages that match the query.
+    // If only one field of the query is specified, then a message is removed if it matches the given query parameter.
+    // If both fields of the query are specified, then a message is removed if it matches both given query parameters.
+    // If neither field is specified, then no messages are removed.
     removeMatchingMessages(query: {message_type?: string, remote_request_id?: string}) {
         const removeMessagesMatchingQuery = () => {
             const current_message_id = this.current_message?._message_id
@@ -156,6 +161,7 @@ export class ExpiringMessages {
     }
 
 
+    // Removes all messages from the set of messages.
     clearAllMessages() {
         this.expiring_messages = []
         this.current_message = undefined

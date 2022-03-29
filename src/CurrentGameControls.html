@@ -1,6 +1,5 @@
 <template>
     <require from="./CurrentGameControls.css"></require>
-    <require from="./css/loading.io.css"></require>
     <require from="./InProcessIndicator"></require>
 
     <div>
@@ -11,7 +10,7 @@
 
             <div if.bind="request_in_progress_count === 0" >
                 <div class="current-game-controls-buttons" if.bind="!answers_panel_is_open" >
-                    <button type="button" id="check-word-button" title="or ENTER" class="current-game-controls-button" click.delegate="userRequestedCheckSolution()" >Score Word</button>
+                    <button type="button" id="check-word-button" title="or ENTER" class="current-game-controls-button" click.delegate="userRequestedCheckAnswer()" >Score Word</button>
                     <button type="button" id="get-hint-button" class="current-game-controls-button" click.delegate="userRequestedHint()" >Get a Hint</button>
                     <button type="button" id="reset-text-button" title="reset text, also by ESC key" class="current-game-controls-button reset-icon-color" click.delegate="resetText()" >🔄</button>
                     <button type="button" id="show-answers-button" class="current-game-controls-button" click.delegate="showAnswersPanel()" >Show Scores...</button>

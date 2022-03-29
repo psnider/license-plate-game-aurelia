@@ -1,6 +1,5 @@
 <template>
     <require from="./StartNewGameControls.css"></require>
-    <require from="./css/toggle-radios.css"></require>
     <require from="./InProcessIndicator"></require>
 
     <div>
@@ -8,7 +7,7 @@
             <button type="button" id="start-new-game-panel-button" class="start-new-game-control" click.delegate="advanceStep('choose type')" >Start New Game</button>
         </div>
         <div if.bind="step === 'choose type'" >
-            <div class="toggle-radio" data-style="rounded">
+            <div >
                 <button type="button" class="start-new-game-control" click.delegate="advanceStep('start random game')" >Random Puzzle</button>
                 <button type="button" class="start-new-game-control" click.delegate="advanceStep('get user selection')" >Choose Puzzle</button>
             </div>

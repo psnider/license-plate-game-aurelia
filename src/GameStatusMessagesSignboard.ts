@@ -19,6 +19,10 @@ const classes_by_message_type: MessageCSSClasses = {
 }
 
 
+// A message display panel for game status changes.
+// This consists of the responses for checking answers, and for hints.
+// One message is shown at a time.
+// They rotate according to the default behavior of ExpiringMessages.
 @autoinject
 export class GameStatusMessagesSignboard {
     game_status_messages: ExpiringMessages
@@ -46,7 +50,7 @@ export class GameStatusMessagesSignboard {
         })
         this.ea.subscribe(AuMsgRemoteCallState, (msg: AuMsgRemoteCallState) => {
             const {message} = msg
-            if ((message.message_type === "new-game-remote-request") && (message.remote_request_status === "sending")) {
+            if ((message.message_type === "new-game-remote-request") && (message.remote_request_status === "request")) {
                 this.game_status_messages.clearAllMessages()
             }
         })
@@ -54,11 +58,13 @@ export class GameStatusMessagesSignboard {
     }
     
 
+    // The Aurelia life-cycle method called as soon as the data from the containing component is bound to this component. 
     bind(bindingContext: Object, overrideContext: Object) {
         this.updated()
     }
     
 
+    // Called whenever the current_message changes.
     updated() {
         this.message_text_lines = this._getDisplayTextLines()
         this.color_style = this._getColorStyle()
@@ -66,6 +72,7 @@ export class GameStatusMessagesSignboard {
     }
 
 
+    // Get the text for the current_message.
     private _getDisplayTextLines() {
         let text_lines = []
         if (this.game_status_messages.current_message?.text) {
@@ -78,6 +85,8 @@ export class GameStatusMessagesSignboard {
         return text_lines
     }
 
+
+    // Get the style for the color of the current message.
     private _getColorStyle() {
         const remote_request_status = this.game_status_messages.current_message?.remote_request_status
         const color = remote_request_status ? status_colors[remote_request_status] : "black"
@@ -85,6 +94,7 @@ export class GameStatusMessagesSignboard {
     }
 
 
+    // Get the CSS classes for the current message.
     private _getCSSClasses() {
         const type = this.game_status_messages.current_message?.message_type
         const classes = (type in classes_by_message_type) ? classes_by_message_type[type] : []

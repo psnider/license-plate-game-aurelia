@@ -13,10 +13,14 @@ export class AnswersPanel {
 
     constructor(private ea: EventAggregator) {}
 
+
+    // The Aurelia life-cycle method called as soon as the data from the containing component is bound to this component. 
     bind() {
         this.puzzle_answersChanged()
     }
 
+
+    // Called by Aurelia when puzzle_answers changes.
     puzzle_answersChanged() {
         this.setAnswerCounts()
         this.setAnswerCountsText()

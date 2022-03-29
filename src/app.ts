@@ -13,6 +13,7 @@ function minutesToMilliseconds(minutes: number) {
 }
 
 
+// The display periods for the types of ExpiringMessage.remote_request_status.
 const EXPIRATION_SECONDS = {
     REQUEST: 30,
     OK: 5,
@@ -20,6 +21,8 @@ const EXPIRATION_SECONDS = {
 }
 
 
+// The main component of the license plate game.
+// This contains most of the game state.
 @autoinject
 export class App {
     settings: Settings
@@ -49,14 +52,14 @@ export class App {
             this.userRequestedStartNewGame(msg.request)
         })
         ea.subscribe(AuMsgRemoteCallState, (msg: AuMsgRemoteCallState) => {
-            if (msg.message.remote_request_status === "sending") {
+            if (msg.message.remote_request_status === "request") {
                 this.in_process_count++
             } else {
                 this.in_process_count--
             }
         })
         ea.subscribe(AuMsgCheckAnswer, (msg: AuMsgCheckAnswer) => {
-            this.userRequestedCheckSolution(msg.callback)
+            this.userRequestedCheckAnswer(msg.callback)
         })
         ea.subscribe(AuMsgHintRequest, (msg: AuMsgHintRequest) => {
             this.userRequestedHint(msg.callback)
@@ -66,6 +69,7 @@ export class App {
     }
 
 
+    // Request the uptime of the server every 15 minutes.
     keepAlive() {
         setTimeout(() => {
             LicensePlateGameClient.requestUpTime()
@@ -73,16 +77,20 @@ export class App {
         }, minutesToMilliseconds(15))
     }
 
+
+    // Add a system message for a request to the server.
     initiateRemoteRequest(message: ExpiringMessage) : void {
         this.ea.publish(new AuMsgRemoteCallState(message))
     }
 
 
+    // Add a system message for a response from the server.
     completedRemoteRequest(message: ExpiringMessage) : void {
         this.ea.publish(new AuMsgRemoteCallState(message))
     }
 
 
+    // Update the local elapsed_seconds variable when the time is updated.
     notifyElapsedTimeUpdated(puzzle: LicensePlatePuzzle) {
         if (this.current_game) {
             this.current_game.elapsed_seconds = puzzle.elapsed_seconds
@@ -91,11 +99,13 @@ export class App {
     }
 
 
-    // @request
-    //   The game_id and elapsed_seconds fields are populated by this function.
+    // Request a new game, from the server.
+    // Request either a random game (the default), or a game specified by the user.
+    // @param request
+    //   If a game is already in progress, then the game_id, elapsed_seconds, and previous_puzzle_grade_level fields are populated by this function from that game.
     userRequestedStartNewGame(request: LicensePlateGameAPI.NewGameRequest) {
         const getNextGradeLevel = (current_game: LicensePlatePuzzle) => {
-            const average_grade_of_answers =  this.getAverageGradeLevelOfAnswers() 
+            const average_grade_of_answers =  this.estimateGradeLevelOfAnswers() 
             if (average_grade_of_answers != null) {
                 return average_grade_of_answers
             } else {
@@ -116,7 +126,7 @@ export class App {
         const requested_text = request.user_selected_puzzle
         const promise = LicensePlateGameClient.requestNewGame(request)
         const remote_request_id = `new-game-${this.remote_request_id++}`
-        this.initiateRemoteRequest({text: "requesting new game", message_type: "new-game-remote-request", remote_request_status: "sending", remote_request_id, expiration_secs: EXPIRATION_SECONDS.REQUEST})
+        this.initiateRemoteRequest({text: "requesting new game", message_type: "new-game-remote-request", remote_request_status: "request", remote_request_id, expiration_secs: EXPIRATION_SECONDS.REQUEST})
         this.feedback_panel_is_open = false
         promise.then((new_game_response) => {
             if (new_game_response.solutions_count > 0) {
@@ -127,7 +137,7 @@ export class App {
                 this.current_game = new_game
                 this.current_game.elapsed_seconds = 0
             } else {
-                const text = `There are no solutions for: ${new_game_response.puzzle_seed}`
+                const text = `There are no answers for: ${new_game_response.puzzle_seed}`
                 request.completion_callback?.(text)
                 this.completedRemoteRequest({remote_request_id, text, message_type: "new-game-remote-request", remote_request_status: "error", expiration_secs: EXPIRATION_SECONDS.ERROR})
             }
@@ -139,6 +149,8 @@ export class App {
         })
     }
 
+
+    // true if the current_game.answer_text has not already been submitted as an answer.
     currentWordIsANewAnswer() {
         const answer_text_uppercase = this.current_game.answer_text.toLocaleUpperCase()
         const found = this.puzzle_answers.find((puzzle_answer) => {return puzzle_answer.answer_text === answer_text_uppercase})
@@ -146,15 +158,17 @@ export class App {
 
     }
 
-    userRequestedCheckSolution(completion_callback?: LicensePlateGameAPI.ClientCompletionCallback) {
+
+    // Request a check of an answer, from the server.
+    userRequestedCheckAnswer(completion_callback?: LicensePlateGameAPI.ClientCompletionCallback) {
         if (this.current_game) {
             if (this.currentWordIsANewAnswer()) {
                 this.current_game.answer_text = this.current_game.answer_text
                 const {game_id, puzzle_seed, elapsed_seconds, answer_text} = this.current_game
                 const request: LicensePlateGameAPI.CheckAnswerRequest = {game_id, puzzle_seed, elapsed_seconds, answer_text}
                 const promise = LicensePlateGameClient.requestCheckAnswer(request)
-                const remote_request_id = `check-solution-${this.remote_request_id++}`
-                this.initiateRemoteRequest({remote_request_id, text: "requesting answer check", message_type: "check-answer-remote-request", remote_request_status: "sending", expiration_secs: EXPIRATION_SECONDS.REQUEST})
+                const remote_request_id = `check-answer-${this.remote_request_id++}`
+                this.initiateRemoteRequest({remote_request_id, text: "requesting answer check", message_type: "check-answer-remote-request", remote_request_status: "request", expiration_secs: EXPIRATION_SECONDS.REQUEST})
                 promise.then((graded_answer) => {
                     completion_callback?.(null, graded_answer)
                     this.completedRemoteRequest({remote_request_id, text: `received answer check for: ${answer_text}`, message_type: "check-answer-remote-request", remote_request_status: "ok", expiration_secs: EXPIRATION_SECONDS.OK})
@@ -178,13 +192,14 @@ export class App {
     }
     
     
+    // Request a hint for a single solution, from the server.
     userRequestedHint(completion_callback?: LicensePlateGameAPI.ClientCompletionCallback) {
         if (this.current_game) {
             const {game_id, puzzle_seed, elapsed_seconds} = this.current_game
             const request: LicensePlateGameAPI.HintRequest = {game_id, puzzle_seed, elapsed_seconds}
             const promise = LicensePlateGameClient.requestHint(request)
             const remote_request_id = `get-hint-${this.remote_request_id++}`
-            this.initiateRemoteRequest({remote_request_id, text: "requesting hint", message_type: "hint-remote-request", remote_request_status: "sending", expiration_secs: EXPIRATION_SECONDS.REQUEST})
+            this.initiateRemoteRequest({remote_request_id, text: "requesting hint", message_type: "hint-remote-request", remote_request_status: "request", expiration_secs: EXPIRATION_SECONDS.REQUEST})
             promise.then((hint) => {
                 completion_callback?.(null, hint)
                 this.completedRemoteRequest({remote_request_id, text: `received hint for: ${puzzle_seed}`, message_type: "hint-remote-request", remote_request_status: "ok", expiration_secs: EXPIRATION_SECONDS.OK})
@@ -199,7 +214,9 @@ export class App {
         }
     }
 
-    getAverageGradeLevelOfAnswers() {
+
+    // Estimate the grade level of the puzzle answers submitted so far.
+    estimateGradeLevelOfAnswers() {
         const count = this.puzzle_answers.length
         let wrong_answer_count = 0
         let summed_grades = 0
