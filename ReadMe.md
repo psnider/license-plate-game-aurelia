@@ -21,7 +21,7 @@ You may run the dummy-server locally so you can work with the web-app.
 npm run start-server
 ```
 _The actual game server is under development and is not open source._  
-Note that the dummy-server only provides data of the proper type for a given contect, but it doesn't actually provide answers.  
+Note that the dummy-server only provides data of the proper type for a given context, but it doesn't actually provide answers.  
 
 ## Overview
 
@@ -50,7 +50,7 @@ Longer words are not supported due to UI contraints.
 
 - The web-app uses a compact UI on a realistic license plate.
 - Character input supports normal key entry and navigation, along with drag-and-drop.
-- If the user attempts to delete one of the original three puzzle characters, the web-app prevents the change and signals the error with an animated color change.
+- If the user attempts to delete one of the original three puzzle characters, the web-app prevents the change and signals the error with an animated color change.  
 -The communication status with the server is shown in the top section of page.  
 These messages time-out as appropriate.
 - The user may request a new game, optionally specifying the characters for the puzzle.
@@ -58,14 +58,15 @@ These messages time-out as appropriate.
 Each hint randomly shows the pattern for a single known answer.
 - Recent answer results and hints are displayed in the bottom portion of the license plate, just below the main text input area.  
 These messages time-out as appropriate.
-- Answers are lised in a separate view displayed over the same license plate image.
+- Answers are listed in a separate view displayed over the same license plate image.
 - Answers are scored with Boggle and Scrabble scores.
 - The difficulty of the correct answers for the current puzzle is used to select the difficulty of the following puzzle.
 - A menu button (in the upper left) contains:
   - An about button that allows the user to pick a version of the web-app built with a different application framework.  
   Currently there are four versions of this web-app, each built with a different framework.  
-  They are: plain HTML+CSS+JS (no framework), React JS, Vue.js, and this one with Aurelia.
-  - A feedback button allows the user to pick a version of the web-app built with a different application framework.
+  They are: plain HTML+CSS+JS (no framework), React JS, Vue.js, and this one with Aurelia.  
+  Of course, those other versions are in separate repos.
+  - A feedback button allows the user to submit comments about the app.
 
 
 # Known Issues
@@ -73,7 +74,7 @@ These messages time-out as appropriate.
 - The background doesn't display correctly on mobile devices.
 - Duplicate messages may be displayed in either message area.
 - The hamburger menu has inconsistent style.
-- The New Game Controls should display a completion messgae for a few seconds immediately after a new game is started.
+- The New Game Controls should display a completion message for a few seconds immediately after a new game is started.
 - There is no way for the user to contest a word.
 - Must add coding style management, such as [TypeScript ESLint](https://typescript-eslint.io/).
 
