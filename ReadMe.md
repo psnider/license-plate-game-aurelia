@@ -73,7 +73,6 @@ These messages time-out as appropriate.
 
 - The background doesn't display correctly on mobile devices.
 - Duplicate messages may be displayed in either message area.
-- The hamburger menu has inconsistent style.
 - The New Game Controls should display a completion message for a few seconds immediately after a new game is started.
 - There is no way for the user to contest a word.
 - Must add coding style management, such as [TypeScript ESLint](https://typescript-eslint.io/).

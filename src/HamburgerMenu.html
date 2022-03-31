@@ -1,0 +1,12 @@
+<template>
+    <require from="./HamburgerMenu.css"></require>
+
+    <div class="hamburger-menu-container">
+        <div><img class="hamburger-menu" src="../static/menu-icon.svg"/></div>
+        <div class="dropdown-content">
+            <button click.delegate="openAboutPanel()">About...</button>
+            <button click.delegate="openFeedbackPanel()">Feedback... 😊  🙁</button>
+        </div>    
+    </div>
+</template>
+ 

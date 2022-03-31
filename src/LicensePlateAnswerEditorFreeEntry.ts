@@ -59,8 +59,6 @@ const DEFAULT_GAME_STATUS_MESSAGE_STYLE = {
 export class LicensePlateAnswerEditorFreeEntry {
     @bindable settings: Settings
     @bindable @observable current_game: LicensePlatePuzzle | undefined
-    @bindable @observable elapsed_seconds: number
-    @bindable @observable puzzle_answers: PuzzleAnswer[]
     @bindable @observable hint: LicensePlateGameAPI.HintResponse | undefined
     computed_style: ComputedStyle
     puzzle_input_element: HTMLInputElement
@@ -72,7 +70,6 @@ export class LicensePlateAnswerEditorFreeEntry {
     max_length: number
     game_messages: ExpiringMessages
     game_status_message_style: Object
-    answers_panel_is_open: boolean
 
 
     constructor(private ea: EventAggregator) {
@@ -83,12 +80,8 @@ export class LicensePlateAnswerEditorFreeEntry {
             // No action required
             // TODO: make this function optional
         })
-        this.answers_panel_is_open = false
         this.ea.subscribe(AuMsgResetPuzzleText, (msg: AuMsgResetPuzzleText) => {
             this.resetPuzzleText()
-        })
-        this.ea.subscribe(AuMsgAnswersPanelState, (msg: AuMsgAnswersPanelState) => {
-            this.answers_panel_is_open = msg.is_open
         })
     }
 

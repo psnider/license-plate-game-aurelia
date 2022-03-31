@@ -3,7 +3,7 @@
     <require from="./Banner"></require>
     <require from="./AboutPanel"></require>
     <require from="./FeedbackPanel"></require>
-    <require from="./LicensePlateAnswerEditorFreeEntry"></require>
+    <require from="./FramedLicensePlate"></require>
     <require from="./AnswersTable"></require>
 
     <div class="app">
@@ -15,7 +15,7 @@
             <feedback-panel if.bind="feedback_panel_is_open" feedback_panel_is_open.bind="feedback_panel_is_open" current_game.bind="current_game" ></feedback-panel>
         </div>
         <div class="main-container-width">
-            <license-plate-answer-editor-free-entry settings.bind="settings" current_game.bind="current_game" puzzle_answers.bind="puzzle_answers" elapsed_seconds.bind="elapsed_seconds" hint.bind="hint" ></license-plate-answer-editor-free-entry>
+            <framed-license-plate settings.bind="settings" current_game.bind="current_game" puzzle_answers.bind="puzzle_answers" elapsed_seconds.bind="elapsed_seconds" hint.bind="hint" ></framed-license->
         </div>
     </div>
 </template>

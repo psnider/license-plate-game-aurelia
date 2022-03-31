@@ -1,30 +1,16 @@
 <template>
     <require from="./css/general.css"></require>
     <require from="./LicensePlateAnswerEditorFreeEntry.css"></require>
-    <require from="./TopOfLicensePlateFrame"></require>
-    <require from="./CurrentGameControls"></require>
     <require from="./GameStatusMessagesSignboard"></require>
-    <require from="./AnswersPanel"></require>
 
-    <div class="license-plate-frame">
-        <div class="top-of-license-frame-size" >
-            <top-of-license-plate-frame current_game.bind="current_game" ></top-of-license-plate-frame>
+    <div>
+        <div class="license-plate-top" ></div>
+        <div class="license-plate-text">
+            <input id="puzzle-input" ref="puzzle_input_element" autocomplete="off" class="license-plate-char input-no-border  ${show_input_error ? 'input-invalid' : ''}" disabled.bind="!current_game" style.bind="computed_style" maxLength.bind="max_length" value.bind="answer_text" input.delegate="onAnyInput($event)" keydown.delegate="onkeydown($event)" change.delegate="onChange()" 
+            dragstart.delegate="onDragStart($event)" drop.delegate="onDrop($event)" ></input>
         </div>
-        <div class="license-plate-frame-interior">
-            <div id="license-plate-text-entry" if.bind="!answers_panel_is_open" class="license-plate-flex-container">
-                <div class="license-plate-top" ></div>
-                <div class="license-plate-text">
-                    <input id="puzzle-input" ref="puzzle_input_element" autocomplete="off" class="license-plate-char input-no-border  ${show_input_error ? 'input-invalid' : ''}" disabled.bind="!current_game" style.bind="computed_style" maxLength.bind="max_length" value.bind="answer_text" input.delegate="onAnyInput($event)" keydown.delegate="onkeydown($event)" change.delegate="onChange()" 
-                    dragstart.delegate="onDragStart($event)" drop.delegate="onDrop($event)" ></input>
-                </div>
-                <div class="license-plate-bottom flexbox-centering" >
-                    <game-status-messages-signboard ></game-status-messages-signboard>
-                </div>
-            </div>
-            <div id="answers-panel" if.bind="answers_panel_is_open" class="answers-container" >
-                <answers-panel puzzle_answers.bind="puzzle_answers"></answers-panel>
-            </div>
+        <div class="license-plate-bottom flexbox-centering" >
+            <game-status-messages-signboard ></game-status-messages-signboard>
         </div>
-        <current-game-controls if.bind="current_game" elapsed_seconds.bind="elapsed_seconds" answers_panel_is_open.bind="answers_panel_is_open" ></current-game-controls>
     </div>
 </template>

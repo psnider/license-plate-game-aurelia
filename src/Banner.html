@@ -1,15 +1,11 @@
 <template>
     <require from="./Banner.css"></require>
+    <require from="./HamburgerMenu"></require>
     <require from="./SystemMessagesSignboard"></require>
 
     <header class="page-header-container">
-        <div class="hamburger-menu-container">
-            <div><img class="hamburger-menu" src="../static/menu-icon.svg"/></div>
-            <div class="dropdown-content">
-                <button click.delegate="openAboutPanel()">About...</button>
-                <button click.delegate="openFeedbackPanel()">Feedback... 😊  🙁</button>
-            </div>
-            <in-process-indicator if.bind="in_process_count > 0" ></in-process-indicator>
+        <div class="menu-container">
+            <hamburger-menu></hamburger-menu>
         </div>
         <div class="banner-container">
             <div class="banner-header" title="built with Aurelia!">Make a Word from a License Plate <img src="../static/aurelia-logo.svg" width="25" height="25" /><img src="../static/Typescript_logo_2020.svg" width="25" height="25" /></div>

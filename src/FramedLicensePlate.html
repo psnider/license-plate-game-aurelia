@@ -1,0 +1,23 @@
+<template>
+    <require from="./css/general.css"></require>
+    <require from="./FramedLicensePlate.css"></require>
+    <require from="./TopOfLicensePlateFrame"></require>
+    <require from="./LicensePlateAnswerEditorFreeEntry"></require>
+    <require from="./AnswersPanel"></require>
+    <require from="./CurrentGameControls"></require>
+
+    <div class="license-plate-frame">
+        <div class="top-of-license-frame-size" >
+            <top-of-license-plate-frame current_game.bind="current_game" ></top-of-license-plate-frame>
+        </div>
+        <div class="license-plate-frame-interior">
+            <div id="license-plate-text-entry" if.bind="!answers_panel_is_open" class="license-plate-flex-container">
+                <license-plate-answer-editor-free-entry settings.bind="settings" current_game.bind="current_game"  hint.bind="hint" ></license-plate-answer-editor-free-entry>
+            </div>
+            <div id="answers-panel" if.bind="answers_panel_is_open" class="answers-container" >
+                <answers-panel puzzle_answers.bind="puzzle_answers"></answers-panel>
+            </div>
+        </div>
+        <current-game-controls if.bind="current_game" elapsed_seconds.bind="elapsed_seconds" answers_panel_is_open.bind="answers_panel_is_open" ></current-game-controls>
+    </div>
+</template>
