@@ -4,7 +4,7 @@
 
     <div>
         <div if.bind="step === 'not active'" >
-            <button type="button" id="start-new-game-panel-button" class="start-new-game-control" click.delegate="advanceStep('choose type')" >Start New Game</button>
+            <button type="button" class="start-new-game-control" click.delegate="advanceStep('choose type')" >Start New Game</button>
         </div>
         <div if.bind="step === 'choose type'" >
             <div >
@@ -15,7 +15,7 @@
         <div if.bind="step === 'get user selection'" >
             <label for="user-selected-puzzle" class="start-new-game-control">Selected by you:</label>
             <input type="text" id="user-selected-puzzle" ref="user_puzzle_input_element" class="start-new-game-control user-specified-text-input" size="" maxLength="3" value.bind="user_selected_puzzle_text" input.delegate="onAnyInput($event)"  />
-            <button type="button" id="start-new-game-user-puzzle-button" class="start-new-game-control start-user-specified-game-button" disabled.bind="user_selected_puzzle_text.length != 3" click.delegate="advanceStep('start user selected game')"  >Use ${user_selected_puzzle_text} as Puzzle</button>
+            <button type="button" class="start-new-game-control start-user-specified-game-button" disabled.bind="user_selected_puzzle_text.length != 3" click.delegate="advanceStep('start user selected game')"  >Use ${user_selected_puzzle_text} as Puzzle</button>
         </div>
         <div if.bind="step === 'awaiting response'"  >
             <in-process-indicator></in-process-indicator>

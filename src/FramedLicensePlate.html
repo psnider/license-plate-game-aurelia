@@ -11,10 +11,10 @@
             <top-of-license-plate-frame current_game.bind="current_game" ></top-of-license-plate-frame>
         </div>
         <div class="license-plate-frame-interior">
-            <div id="license-plate-text-entry" if.bind="!answers_panel_is_open" class="license-plate-flex-container">
+            <div if.bind="!answers_panel_is_open" class="license-plate-flex-container">
                 <license-plate-answer-editor-free-entry settings.bind="settings" current_game.bind="current_game"  hint.bind="hint" ></license-plate-answer-editor-free-entry>
             </div>
-            <div id="answers-panel" if.bind="answers_panel_is_open" class="answers-container" >
+            <div if.bind="answers_panel_is_open" class="answers-container" >
                 <answers-panel puzzle_answers.bind="puzzle_answers"></answers-panel>
             </div>
         </div>

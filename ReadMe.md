@@ -207,7 +207,7 @@ Its HTML consists of an Aurelia-specific _require_ element, which loads the CSS 
   ```html
 <template>
     <require from="./InProcessIndicator.css"></require>
-    <div id="request-in-progress" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
 </template>
   ```
   Each Aurelia component must have a JavaScript class with the name of the class.  

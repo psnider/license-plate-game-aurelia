@@ -4,8 +4,8 @@
     <require from="./AnswerRow"></require>
 
     <answers-title-row ></answers-title-row>
-    <div id="gap-after-answer-title-row" style="height:5px;" ></div>
-    <div id="table-data-rows" style="height:350px;" class="scroll-vertically" >
+    <div style="height:5px;" ></div>
+    <div ref="data_rows_element" style="height:350px;" class="scroll-vertically" >
         <div repeat.for="puzzle_answer of puzzle_answers">
             <answer-row puzzle_answer.bind="puzzle_answer" ></answer-row>
         </div>    

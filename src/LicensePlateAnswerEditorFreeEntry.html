@@ -6,7 +6,7 @@
     <div>
         <div class="license-plate-top" ></div>
         <div class="license-plate-text">
-            <input id="puzzle-input" ref="puzzle_input_element" autocomplete="off" class="license-plate-char input-no-border  ${show_input_error ? 'input-invalid' : ''}" disabled.bind="!current_game" style.bind="computed_style" maxLength.bind="max_length" value.bind="answer_text" input.delegate="onAnyInput($event)" keydown.delegate="onkeydown($event)" change.delegate="onChange()" 
+            <input ref="puzzle_input_element" autocomplete="off" class="license-plate-char input-no-border  ${show_input_error ? 'input-invalid' : ''}" disabled.bind="!current_game" style.bind="computed_style" maxLength.bind="max_length" value.bind="answer_text" input.delegate="onAnyInput($event)" keydown.delegate="onkeydown($event)" change.delegate="onChange()" 
             dragstart.delegate="onDragStart($event)" drop.delegate="onDrop($event)" ></input>
         </div>
         <div class="license-plate-bottom flexbox-centering" >

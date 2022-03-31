@@ -5,7 +5,7 @@
 
     <div >
         <div if.bind="feedback_panel_is_open" >
-            <div id="feedback-panel" class="feedback-panel">
+            <div class="feedback-panel">
                 <div class="feedback-header" >Please provide your suggestions,<br>or describe any problems you found...</div>
                 <div class="toggle-radio rating-button-spacing" data-style="rounded">
                     <input type="radio" id="good-rating" name="rating" value="good" checked.bind="rating" />
@@ -15,7 +15,7 @@
                 </div>
                 <div>
                     <!-- TODO: add pattern back in: <textarea pattern="\w*" -->
-                    <textarea id="feedback-text" class="feedback-text" title="Please provide your suggestions, or describe any problems you found." value.bind="comments" rows="3" ></textarea>
+                    <textarea class="feedback-text" title="Please provide your suggestions, or describe any problems you found." value.bind="comments" rows="3" ></textarea>
                 </div>
                 <div>
                     <button class="feedback-button" type="button" click.delegate="sendFeedback()" >Send Feedback</button>

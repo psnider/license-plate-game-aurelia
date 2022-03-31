@@ -4,11 +4,11 @@
 
     <div class="answers-panel">
         <div if.bind="puzzle_answers.length > 0" >
-            <div id="div-ans-hdr" style="height:10%;">
+            <div style="height:10%;">
                 <div class="text-over-license-plate" >${answers_counts_text}</div>
                 <div class="text-over-license-plate" >...for a total score of ${total_answers_score} points.</div>    
             </div>
-            <div id="div-ans-tbl" style="height:440px;">
+            <div style="height:440px;">
                 <answers-table puzzle_answers.bind="puzzle_answers" ></answers-table>    
             </div>
         </div>
