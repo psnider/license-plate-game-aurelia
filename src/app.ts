@@ -2,7 +2,7 @@ import {autoinject} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {Settings, ExpiringMessage, PuzzleAnswer} from "./lib/index.d"
 import {MAX_EXPIRATION_SECONDS} from "./lib/lib"
-import {AuMsgAboutPanelState, AuMsgFeedbackPanelState, AuMsgRemoteCallState, AuMsgNewGameRequest, AuMsgCheckAnswer, AuMsgHintRequest} from './messages';
+import {AuMsgWindowResized, AuMsgAboutPanelState, AuMsgFeedbackPanelState, AuMsgRemoteCallState, AuMsgNewGameRequest, AuMsgCheckAnswer, AuMsgHintRequest} from './messages';
 import {LicensePlatePuzzle} from "./lib/license-plate-puzzle"
 import {LicensePlateGameClient} from "license-plate-game-api"
 import type {LicensePlateGameAPI} from "license-plate-game-api"
@@ -11,7 +11,7 @@ import type {LicensePlateGameAPI} from "license-plate-game-api"
 function minutesToMilliseconds(minutes: number) {
     return minutes * 60 * 1000
 }
-
+  
 
 // The display periods for the types of ExpiringMessage.remote_request_status.
 const EXPIRATION_SECONDS = {
@@ -66,9 +66,13 @@ export class App {
         })
         this.userRequestedStartNewGame({})
         this.keepAlive()
+        window.onresize = () => {
+            const size = {width: window.innerWidth, height: window.innerHeight}
+            this.ea.publish(new AuMsgWindowResized(size))
+        }
     }
 
-
+    
     // Request the uptime of the server every 15 minutes.
     keepAlive() {
         setTimeout(() => {

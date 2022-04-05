@@ -3,12 +3,11 @@ body {
 }
 .app {
     background-image: linear-gradient(rgb(183, 224, 240), rgb(85, 145, 168));
-    padding: 10px;
+    padding: 2vw;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 .main-container-width {
-    width: 1000px;
-    margin: 5px;
+    width: 96vw;
 }

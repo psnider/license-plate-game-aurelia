@@ -2,7 +2,7 @@
     <require from="./css/general.css"></require>
     <require from="./GameStatusMessagesSignboard.css"></require>
 
-    <div class="flexbox-centering flexbox-centering-text"  class="fade-out-in" style="height:50px;" >
+    <div class="flexbox-centering"  class="fade-out-in" style="height:5vw;" >
         <div repeat.for="message_text_line of message_text_lines" >
             <span class.bind="current_css_classes" style.bind="color_style" >${message_text_line}</span>
         </div> 

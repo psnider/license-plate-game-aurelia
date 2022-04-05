@@ -19,6 +19,11 @@
 
 /* page title */
 .banner-header {
-    font-size: 2em;
+    font-size: 3vw;   /* formerly 2em; */
+}
+
+.banner-icon {
+    width: 2.5vw;
+    height: 2.5vw;
 }
 

@@ -1,11 +1,12 @@
 .start-new-game-control {
-    font-size: 1.2em;
+    font-size: 1.8vw;    /* 1.2em; */
+    border-radius: 0.2vw;
 }
 
 .user-specified-text-input {
-    width: 3em;
+    width: 5.3vw;    /* 3em; */
 }
 
 .start-user-specified-game-button {
-    width: 11em;
+    width: 20vw;    /* 11em; */
 }

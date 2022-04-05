@@ -3,26 +3,29 @@
     <require from="./InProcessIndicator"></require>
 
     <div>
-        <div class="current-game-controls" >
-            <div class="current-game-controls-time">
-                <span>Time Elapsed: </span><span >${hours_minutes_seconds}</span>
+        <div class="current-game-controls-container" >
+            <div class="current-game-controls-container-child">
+                <div class="current-game-controls-time">
+                    <span>Time Elapsed: </span><span >${hours_minutes_seconds}</span>
+                </div>
             </div>
 
-            <div if.bind="request_in_progress_count === 0" >
-                <div class="current-game-controls-buttons" if.bind="!answers_panel_is_open" >
-                    <button type="button" title="or ENTER" class="current-game-controls-button" click.delegate="userRequestedCheckAnswer()" >Score Word</button>
-                    <button type="button" class="current-game-controls-button" click.delegate="userRequestedHint()" >Get a Hint</button>
-                    <button type="button" title="reset text, also by ESC key" class="current-game-controls-button reset-icon-color" click.delegate="resetText()" >🔄</button>
-                    <button type="button" class="current-game-controls-button" click.delegate="showAnswersPanel()" >Show Scores...</button>
-                </div>
-                <div class="current-game-controls-buttons" if.bind="answers_panel_is_open" >
-                    <button type="button" class="current-game-controls-button" click.delegate="hideAnswersPanel()" >Back to word entry...</button>
+            <div class="current-game-controls-container-child">
+                <div if.bind="request_in_progress_count === 0" >
+                    <div if.bind="!answers_panel_is_open" >
+                        <button class="current-game-controls-button" type="button" title="or ENTER" click.delegate="userRequestedCheckAnswer()" >Score Word</button>
+                        <button class="current-game-controls-button" type="button" click.delegate="userRequestedHint()" >Get a Hint</button>
+                        <button class="current-game-controls-button" type="button" title="reset text, also by ESC key" class="reset-icon" click.delegate="resetText()" >🔄</button>
+                        <button class="current-game-controls-button" type="button" click.delegate="showAnswersPanel()" >Show Scores...</button>
+                    </div>
+                    <div if.bind="answers_panel_is_open" >
+                        <button class="current-game-controls-button" type="button" click.delegate="hideAnswersPanel()" >Back to word entry...</button>
+                    </div>
                 </div>
 
-            </div>
-
-            <div if.bind="request_in_progress_count > 0" >
-                <in-process-indicator></in-process-indicator>
+                <div if.bind="request_in_progress_count > 0" >
+                    <in-process-indicator></in-process-indicator>
+                </div>
             </div>
         </div>
     </div>

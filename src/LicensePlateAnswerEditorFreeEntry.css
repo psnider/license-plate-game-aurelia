@@ -1,13 +1,19 @@
 
-.license-plate-top {
-    width: 95%;
-    height: 20%;
-    /* border: 1px dashed red; */
+.license-plate-editor-container {
+    display: grid; 
+    grid-template-rows: 3fr 3fr 3fr;
+    grid-gap: 0px;
+    row-gap: 0px;
+    padding: 0px;
+    margin: 0px;
+    height: 34vw;
+    /* height: 60%;
+    max-height: 60%; */
 }
 .license-plate-text {
     width: 95%;
-    height: 60%;
-    /* border: 1px dashed white; */
+    height: 90%;
+    border: thin dashed grey;
     margin: auto;
     display: flex;
     flex-flow: row nowrap;
@@ -17,7 +23,7 @@
 .license-plate-char {
     font-family: sans-serif;
     color: black;
-    font-size: 10em;
+    font-size: 15vw;
     transition: all 1s ease;
 }
 .input-no-border {
@@ -28,10 +34,5 @@
 .input-invalid {
     color: red;
     transition: all 0.2s ease;
-}
-.license-plate-bottom {
-    width: 95%;
-    height: 20%;
-    /* border: 1px dashed red; */
 }
 

@@ -1,17 +1,17 @@
 .not_a_word_tile {
-    font-size: 1em;
+    font-size: 1.5vw;     /* formerly 1em; */
 }
 .boggle_score_tile {
-    width: 20px;
+    width: 1.3vw;
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(21, 98, 241);
     background-color: rgb(231, 247, 248);
-    border: 1px solid darkblue;
+    border: thin solid darkblue;
 }
 .scrabble_score_tile {
-    width: 20px;
+    width: 1.3vw;
     font-family: Spinnaker, Arial, sans-serif;
     color: #2A1F1B;
-    background-color: #ce9f73;
-    border: 1px solid rgb(139, 107, 0);
+    background-color: rgb(206, 159, 115, 1);
+    border: thin solid rgb(139, 107, 0);
 }

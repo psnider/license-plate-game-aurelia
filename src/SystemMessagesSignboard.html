@@ -1,9 +1,12 @@
 <template>
     <require from="./css/general.css"></require>
+    <require from="./SystemMessagesSignboard.css"></require>
 
-    <div class="flexbox-centering flexbox-centering-text" style="height:50px;">
-        <div repeat.for="message_text_line of message_text_lines">
-            <span class.bind="current_css_classes" style.bind="color_style" >${message_text_line}</span>
-        </div> 
+    <div class="flexbox-centering  system-messages-size">
+        <div class="display-block">
+            <div repeat.for="message_text_line of message_text_lines">
+                <span class.bind="current_css_classes" style.bind="color_style" >${message_text_line}</span>
+            </div> 
+        </div>
     </div>
 </template>

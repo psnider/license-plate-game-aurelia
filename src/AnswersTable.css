@@ -1,3 +1,7 @@
 .scroll-vertically {
     overflow-y: scroll;
 }
+
+.answers-table-size {
+    height: 30vw;
+}

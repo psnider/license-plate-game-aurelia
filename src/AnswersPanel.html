@@ -1,19 +1,22 @@
 <template>
+    <require from="./css/general.css"></require>
     <require from="./AnswersPanel.css"></require>
     <require from="./AnswersTable"></require>
 
-    <div class="answers-panel">
-        <div if.bind="puzzle_answers.length > 0" >
-            <div style="height:10%;">
+    <div if.bind="puzzle_answers.length > 0" >
+        <div class="answers-container" >
+            <div class="answers-panel-header-container" >
                 <div class="text-over-license-plate" >${answers_counts_text}</div>
                 <div class="text-over-license-plate" >...for a total score of ${total_answers_score} points.</div>    
             </div>
-            <div style="height:440px;">
+            <div class="answers-panel-list-container">
                 <answers-table puzzle_answers.bind="puzzle_answers" ></answers-table>    
-            </div>
+            </div>    
         </div>
-        <div if.bind="puzzle_answers.length == 0"  >
-            <h3 class="text-over-license-plate" >You haven't asked to score any answers to the puzzle yet...</h3>
+    </div>
+    <div if.bind="puzzle_answers.length == 0"  >
+        <div class="no-answers-container" >
+            <h4 class="text-over-license-plate" >You haven't asked to score any answers to the puzzle yet...</h3>
         </div>
     </div>
 

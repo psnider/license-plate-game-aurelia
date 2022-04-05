@@ -1,19 +1,49 @@
-.answers-panel {
-    height: 100%;
-    width: 100%;
+.answers-container {
+    display: grid; 
+    grid-template-rows: 3fr 3fr 3fr;
+    grid-gap: 0px;
+    row-gap: 0px;
+    padding: 0px;
+    margin: 0px;
+    height: 34vw;
+
+    font-size: 1.5vw;
+	text-shadow: -1px 1px 1px #ffffff,
+				  1px 1px 1px #ffffff,
+				  1px -1px 1px #ffffff,
+				  -1px -1px 1px #ffffff;
+}
+
+.answers-panel-header-container {
+    height: 10%;
+}
+
+.answers-panel-list-container {
+    height: 80%;
 }
 
 .answers-panel-answers {
     height: 100%;
     width: 100%;
-    margin: 5px;
-    padding: 5px;
+    margin: 0.2vw;
+    padding: 0.2vw;
 }
-
 
 
 .text-over-license-plate {
     background-color: rgba(236, 244, 250, 0.4);
+}
+
+.no-answers {
+    margin: 0 auto;
+}
+
+.no-answers-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 34vw;
+
 	text-shadow: -1px 1px 1px #ffffff,
 				  1px 1px 1px #ffffff,
 				  1px -1px 1px #ffffff,

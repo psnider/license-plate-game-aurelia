@@ -1,6 +1,6 @@
 import {bindable, autoinject, observable} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
-import {AuMsgResetPuzzleText, AuMsgAnswersPanelState, AuMsgCheckAnswerTriggeredByEnter} from './messages';
+import {AuMsgWindowResized, AuMsgResetPuzzleText, AuMsgAnswersPanelState, AuMsgCheckAnswerTriggeredByEnter} from './messages';
 import type {LicensePlatePuzzle} from "./lib/license-plate-puzzle"
 import type {LicensePlateGameAPI} from "license-plate-game-api"
 import {ExpiringMessages} from "./expiring-messages"
@@ -10,9 +10,9 @@ import {Settings, PuzzleAnswer} from "./lib"
 // This must be tied to NewGameResponse.max_word_length
 const MAX_WORD_LENGTH = 15
 const PUZZLE_TEXT_FOR_NO_GAME = "???"
-const MAX_FONT_SIZE_EM = 10
-const MIN_FONT_SIZE_EM = 6
-const DIFF_IN_FONT_SIZE_EM = MAX_FONT_SIZE_EM - MIN_FONT_SIZE_EM
+const MAX_FONT_SIZE_VW = 15   // This should be the same value as CSS class .license-plate-char {font-size}
+const MIN_FONT_SIZE_VW = 8
+const DIFF_IN_FONT_SIZE_VW = MAX_FONT_SIZE_VW - MIN_FONT_SIZE_VW
 const MAX_WORD_LENGTH_AT_MAX_FONT_SIZE = 5
 const LENGTH_BETWEEN_MIN_AND_MAX_FONT_SIZE = MAX_WORD_LENGTH - MAX_WORD_LENGTH_AT_MAX_FONT_SIZE
 
@@ -28,24 +28,17 @@ interface CursorSelection {
     selectionEnd: number
 }
 
+const MAX_VW_WIDTH_OF_INPUT = 85
 
-
-const dummy_canvas: HTMLCanvasElement = document.createElement("canvas")
-const canvas_context: CanvasRenderingContext2D = dummy_canvas.getContext("2d");
 type CSS = Object
 
-function calculatePixelWidth(text: string, element: HTMLElement): number {
-    const live_attributes = window.getComputedStyle(element)
-    const {font, fontSize, fontFamily, fontStyle, fontWeight} = live_attributes
-    const attributes = {font, fontSize, fontFamily, fontStyle, fontWeight}
-    Object.assign(canvas_context, attributes)
-    const metrics = canvas_context.measureText(text)
-    return metrics.width;
+function calculateWidthInVW(vw_size: number, text: string, element: HTMLElement): number {
+    let vw_of_text = Math.min(Math.trunc(vw_size * text.length), MAX_VW_WIDTH_OF_INPUT)
+    return vw_of_text
 }
 
 
 const DEFAULT_GAME_STATUS_MESSAGE_STYLE = {
-    // fontSize: "1em",
     margin: "0 auto"
 }
 
@@ -83,6 +76,9 @@ export class LicensePlateAnswerEditorFreeEntry {
         this.ea.subscribe(AuMsgResetPuzzleText, (msg: AuMsgResetPuzzleText) => {
             this.resetPuzzleText()
         })
+        this.ea.subscribe(AuMsgWindowResized, (msg: AuMsgWindowResized) => {
+            this.updateSizes()
+        })
     }
 
 
@@ -101,7 +97,7 @@ export class LicensePlateAnswerEditorFreeEntry {
     current_gameChanged() {
         if (this.current_game) {
             this.answer_text = this.current_game.answer_text
-            const [char0, char1, char2] = this.answer_text.split("")
+            const [char0, char1, char2] = this.current_game.puzzle_seed.split("")
             const puzzle_chars_text = `${char0}.*${char1}.*${char2}.*`   
             this.puzzle_chars_in_order_regexp = new RegExp(puzzle_chars_text, "i")    
         } else {
@@ -246,32 +242,32 @@ export class LicensePlateAnswerEditorFreeEntry {
     
     // Updates the CSS size styles for the answer text input.
     updateSizes() {
-        const em_size = this.getLicensePlateCharSizeEm()
-        const width_px = this.puzzle_input_element ? calculatePixelWidth(this.answer_text + "W", this.puzzle_input_element) : 500
+        const vw_size = this.getLicensePlateCharSizeVw()
+        const width_vw = this.puzzle_input_element ? calculateWidthInVW(vw_size, this.answer_text + "W", this.puzzle_input_element) : 500
         this.computed_style = {
-            "font-size": `${em_size}em`,
-            width: `${Math.floor(width_px)}px`
+            "font-size": `${vw_size}vw`,
+            width: `${width_vw}vw`
         }
     }
 
 
     // Computes the font size for the answer text input.
-    getLicensePlateCharSizeEm(): number {
+    getLicensePlateCharSizeVw(): number {
         if (this.answer_text) {
             const length = this.answer_text.length
             let size
             if (length <= MAX_WORD_LENGTH_AT_MAX_FONT_SIZE) {
-                size = MAX_FONT_SIZE_EM
+                size = MAX_FONT_SIZE_VW
             } else if (length >= MAX_WORD_LENGTH) {
-                size = MIN_FONT_SIZE_EM
+                size = MIN_FONT_SIZE_VW
             } else {
                 const dist_from_min = length - MAX_WORD_LENGTH_AT_MAX_FONT_SIZE
-                const size_decrease = (dist_from_min / LENGTH_BETWEEN_MIN_AND_MAX_FONT_SIZE) * DIFF_IN_FONT_SIZE_EM
-                size = MAX_FONT_SIZE_EM - size_decrease
+                const size_decrease = (dist_from_min / LENGTH_BETWEEN_MIN_AND_MAX_FONT_SIZE) * DIFF_IN_FONT_SIZE_VW
+                size = MAX_FONT_SIZE_VW - size_decrease
             }
             return size    
         } else {
-            return MAX_FONT_SIZE_EM
+            return MAX_FONT_SIZE_VW
         }
     }
 

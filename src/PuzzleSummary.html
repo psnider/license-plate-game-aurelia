@@ -1,10 +1,11 @@
 <template>
     <require from="./PuzzleSummary.css"></require>
+
     <div >
         <div if.bind="current_game" >
             <span class="puzzle-description">Puzzle: </span>
             <span class="mini-license-plate">${current_game.license_plate_text}</span>
-            <span class="puzzle-description">has ${current_game.solutions_count} answers</span>    
+            <span class="puzzle-description">has ${current_game.solutions_count.toLocaleString()} answers</span>    
         </div>
     </div>
 </template>

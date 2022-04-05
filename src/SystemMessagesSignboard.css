@@ -1,10 +1,17 @@
-
-.game_description_message {
-    color: black;
+.system-messages-size {
+    height: 5vw;
 }
 
-.remote_request_message {
+.display-block {
+    display: block flow;
+}
+
+.game-description-message {
+    font-size: 1.6vw;   /* 1.2em; */
+}
+
+.remote-request-message {
     font-family: Verdana;
     font-weight: strong;
-    font-size: 1.2em;
+    font-size: 1.6vw;   /* 1.2em; */
 }

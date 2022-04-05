@@ -1,35 +1,55 @@
 .current-game-controls-button {
-    border-radius: 4px;
-    font-size: 1.0em;
+    border-radius: 0.4vw;
+    font-size: 1.8vw;     /* formerly 1em; */
 }
-.current-game-controls {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 95%;
-    height: 15%;
+.current-game-controls-container {
+    display: grid; 
+    grid-template-columns: 38fr 62fr;
+    grid-gap: 0px; 
+
+    /* width: 95%; */
+    /* height: 15%; */
     margin: 0 auto;
+    /* padding: 1vw; */
+}
+.current-game-controls-container-child {
+    margin: 0.3vw;   
+    padding: 0.3vw;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    flex-flow: row nowrap;
-    padding: 10px;
-    column-gap: 10px;
-    font-size: 1.5em;
-    /* border: 1px solid grey; */
+    /* margin: 0 auto; */
 }
+/* 
+.current-game-controls-time-container {
+    / * padding: 0.5vw; * /
+    font-size: 1.8vw;
+    margin: 0 auto;
+}
+ */
 .current-game-controls-time {
-    flex: 0 0 25%;
-    padding: 5px;
-    /* border: 1px solid grey; */
-}
-.current-game-controls-buttons {
-    flex: 0 0 34%;
-    padding: 5px;
-}
-.current-game-controls-hint {
-    flex: 0 0 41%;
-    padding: 5px;
+    /* flex: 0 0 25%; */
+    /* padding: 0.5vw; */
+    display: inline-block; 
+    font-size: 1.8vw;
+    margin: 0 auto;
 }
 
-.reset-icon-color {
-    color: red;
+.current-game-controls-button {
+    font-size: 1.8vw;
+}
+/*
+.current-game-controls-buttons {
+    / * flex: 0 0 34%; * /
+    / * padding: 0.5vw; * /
+}
+.current-game-controls-hint {
+    / * flex: 0 0 41%; * /
+    / * padding: 0.5vw; * /
+}
+ */
+.reset-icon {
+    /* color: red; */
+    height: 1.8vw;
+    width: 1.8vw;
 }

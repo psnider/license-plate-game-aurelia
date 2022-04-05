@@ -1,39 +1,41 @@
 .feedback-panel{
+    font-size: 1.5vw;
     background-color: rgb(205, 233, 255);
     width: 50%;
-    margin: 15px;
-    padding: 5px;
+    margin: 1.5vw;
+    padding: 0.5vw;
     color: black;
-    border: 1px solid black;
-    border-radius: 8px;
+    border: thin solid black;
+    border-radius: 0.5vw;
 }
+/* 
 .feedback-header {
-    font-size: 1.2em;
-}
+    font-size: 1.5vw;     / * formerly 1.2em; * /
+} 
+*/
+
 .rating-button-spacing {
-    padding: 5px; 
+    padding: 0.5vw;
 }
 .feedback-text {
+    font-size: 1.5vw;
+    font-family: sans-serif;
     box-sizing: border-box;
     width: 100%;
     max-width: 100%;
-    padding: 5px;
+    padding: 0.5vw;
 }
 .feedback-button {
-    font-size: 1em;
-    border-radius: 4px;
-    /* width: 140px; */
-    height: 30px;
-    padding: 4px;
-    margin: 2px;
+    font-size: 1.5vw;
+    height: 3vw;
+    padding: 0.4vw;
+    margin: 0.2vw;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     font-family: sans-serif;
-    /* color: rgb(21, 98, 241); */
-    /* background-color: rgb(231, 247, 248); */
-    border: 1px solid black;
-    border-radius: 8px;
+    border: thin solid black;
+    border-radius: 0.2vw;
 }
 

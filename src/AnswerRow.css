@@ -6,44 +6,35 @@
 
 .answer-title-element {
     background-color: rgba(235, 243, 250, 0.4);
-    border: 1px solid grey;
+    border: thin solid grey;
+    border-radius: 0.2vw;
     display: flex;
     align-items: center;
     justify-content: center;
-
-	text-shadow: -1px 1px 1px #ffffff,
-				  1px 1px 1px #ffffff,
-				  1px -1px 1px #ffffff,
-				  -1px -1px 1px #ffffff;
 }
 
 .answer-text-element {
     background-color: rgba(236, 244, 250, 0.4);
-    border: 1px solid black;
-    border-radius: 3px;
+    border: thin solid black;
+    border-radius: 0.2vw;
     display: flex;
     align-items: center;
     justify-content: center;
-
-	text-shadow: -1px 1px 1px #ffffff,
-				  1px 1px 1px #ffffff,
-				  1px -1px 1px #ffffff,
-				  -1px -1px 1px #ffffff;
 }
 
 .answer-container-element {
     background-color: rgba(236, 244, 250, 0.4);
-    border: 1px solid black;
-    border-radius: 3px;
-    padding: 2px;
+    border: thin solid black;
+    border-radius: 0.2vw;
+    padding: 0.2vw;
 }
 
 .score_tile {
-    font-size: 1em;
-    border-radius: 4px;
-    height: 20px;
-    padding: 2px;
-    margin: 2px;
+    /* border is set by the specific tile type class */
+    border-radius: 0.2vw;
+    height: 1.3vw;
+    padding: 0.1vw;
+    margin: 0.1vw;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -55,6 +46,6 @@
     font-family: Spinnaker, Arial, sans-serif;
     color: black;
     background-color: #d6c66c;
-    border: 1px solid #807642;
+    border: thin solid #807642;
 }
 

@@ -1,39 +1,36 @@
 .license-plate-frame {
     background-image: url(./css/license-plates/metal-sheet.jpg);
     background-size: cover;
-    border-radius: 10px;
-    width: 1000px;
-    height: 600px;
-    margin: 5px;
-    border: 2px solid black;
+    border-radius: 1vw;
+    width: 94vw;
+    height: 50vw;
+    margin: 1vw;
+    border: medium solid black;
+    box-sizing: border-box;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid; 
+    grid-template-rows: 1fr 8fr 1fr;
+    grid-gap: 0px; 
 }
-.top-of-license-frame-size {
-    width: 95%;
-    height: 15%;
+
+.top-of-license-frame-container {
     margin: 0 auto;
 }
 .license-plate-frame-interior {
     background-image: url(./css/license-plates/license-plate-oregon.jpg);
     background-size: cover;
-    border-radius: 8px;
+    border-radius: 1vw;
     width: 90%;
-    height: 70%;
-    border: 2px solid darkblue;
-    padding: 20px;
+    /* height: 70%; */
+    border: medium solid darkblue;
+    padding: 1vw;
     margin: 0 auto;
 }
-.license-plate-flex-container {
-    height: 100%;
-    width: 100%;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.bottom-of-license-frame-container {
+    margin: 0 auto;
 }
+
+/* TODO: not required */
 .answers-container {
     height: 100%;
     width: 100%;

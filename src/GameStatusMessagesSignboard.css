@@ -1,18 +1,19 @@
 
 .hint-message {
-    padding: 5px;
+    padding: 0.5vw;
     font-family: 'Trebuchet MS';
     font-style: italic;
     background-color: #ECF4FA;
     white-space: pre;
-    opacity: 1;
+    font-size: 1.6vw;
 }
 
 .checked-answer-message {
-    padding: 5px;
+    padding: 0.5vw;
     font-weight: bold;
     background-color: #ECF4FA;
     font-family: 'Trebuchet MS';
+    font-size: 1.6vw;
 }
 
 

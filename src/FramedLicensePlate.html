@@ -7,17 +7,19 @@
     <require from="./CurrentGameControls"></require>
 
     <div class="license-plate-frame">
-        <div class="top-of-license-frame-size" >
+        <div class="top-of-license-frame-container" >
             <top-of-license-plate-frame current_game.bind="current_game" ></top-of-license-plate-frame>
         </div>
         <div class="license-plate-frame-interior">
-            <div if.bind="!answers_panel_is_open" class="license-plate-flex-container">
+            <div if.bind="!answers_panel_is_open">
                 <license-plate-answer-editor-free-entry settings.bind="settings" current_game.bind="current_game"  hint.bind="hint" ></license-plate-answer-editor-free-entry>
             </div>
-            <div if.bind="answers_panel_is_open" class="answers-container" >
+            <div if.bind="answers_panel_is_open" >
                 <answers-panel puzzle_answers.bind="puzzle_answers"></answers-panel>
             </div>
         </div>
-        <current-game-controls if.bind="current_game" elapsed_seconds.bind="elapsed_seconds" answers_panel_is_open.bind="answers_panel_is_open" ></current-game-controls>
+        <div class="bottom-of-license-frame-container" >
+            <current-game-controls if.bind="current_game" elapsed_seconds.bind="elapsed_seconds" answers_panel_is_open.bind="answers_panel_is_open" ></current-game-controls>
+        </div>
     </div>
 </template>

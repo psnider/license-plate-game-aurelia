@@ -17,15 +17,15 @@ const status_colors = {
 type MessageCSSClasses = {[message_type:string]: string[]}
 
 const classes_by_message_type: MessageCSSClasses = {
-    info: ["game_description_message"],
-    "new-game-remote-request": ["remote_request_message"],
-    "check-answer-remote-request": ["remote_request_message"],
-    "hint-remote-request": ["remote_request_message"],
-    "feedback-remote-request": ["remote_request_message"],
+    info: ["game-description-message"],
+    "new-game-remote-request": ["remote-request-message"],
+    "check-answer-remote-request": ["remote-request-message"],
+    "hint-remote-request": ["remote-request-message"],
+    "feedback-remote-request": ["remote-request-message"],
 }
 
+
 const DEFAULT_SYSTEM_MESSAGE_STYLE = {
-    // fontSize: "1em",
     margin: "0 auto"
 }
 

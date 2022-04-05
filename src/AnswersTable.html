@@ -4,8 +4,7 @@
     <require from="./AnswerRow"></require>
 
     <answers-title-row ></answers-title-row>
-    <div style="height:5px;" ></div>
-    <div ref="data_rows_element" style="height:350px;" class="scroll-vertically" >
+    <div ref="data_rows_element" class="answers-table-size scroll-vertically" >
         <div repeat.for="puzzle_answer of puzzle_answers">
             <answer-row puzzle_answer.bind="puzzle_answer" ></answer-row>
         </div>    
